@@ -17,10 +17,7 @@ The application has the following features:
 2. User login
 3. User logout
 4. User profile
-5. Meeting room booking
-6. Meeting room booking history
-7. Meeting room booking cancellation
-8. Payment
+5. ... (TODO)
 
 ## Technologies
 
@@ -41,10 +38,10 @@ The application design is available at [Figma](#TODO)
 
 The application requires the following software to be installed:
 
-1. PHP 8.2^
+1. PHP v8.2^
 2. Composer
-3. Node.js
-4. NPM
+3. Node.js v20^
+4. NPM v10^
 5. MySQL
 6. Git
 
@@ -79,7 +76,7 @@ npm install
 
 ## Notes
 
-## Coding Standard
+### Coding Standard
 
 To fix code styling using prettier, you can run the following command:
 
