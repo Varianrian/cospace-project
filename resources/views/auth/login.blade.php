@@ -63,16 +63,18 @@
         <div class="mt-6 flex items-center justify-between">
           <div class="flex items-center">
             <input
-              id="remember_me"
+              id="remember"
               type="checkbox"
               class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
             />
-            <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-300">Remember me</label>
+            <label for="remember" class="ml-2 block text-sm leading-5 text-gray-300">Remember me</label>
           </div>
-          @if (Route::has('password.request'))
+        </div>
+        <div class="mt-2 flex justify-between">
+          @if (Route::has('auth.forgot-password.view'))
             <div class="text-sm leading-5">
               <a
-                href="{{ route('password.request') }}"
+                href="{{ route('auth.forgot-password.view') }}"
                 class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:underline focus:outline-none"
               >
                 Forgot your password?

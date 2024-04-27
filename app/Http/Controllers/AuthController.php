@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function login()
     {
         return view('auth.login');
@@ -18,10 +23,15 @@ class AuthController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $remember = $request->remember;
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
+            return redirect()->intended('/');
+        }
+
+        if (Auth::viaRemember()) {
             return redirect()->intended('/');
         }
 
@@ -79,8 +89,8 @@ class AuthController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 
     public function resetPassword(Request $request)
@@ -101,7 +111,7 @@ class AuthController extends Controller
         );
 
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('auth.login.view')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('auth.login.view')->with('status', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
 }
