@@ -26,7 +26,31 @@
             @endforeach
           @endif
         </div>
-        <div class="mt-6">
+
+        @if(Route::has('auth.login.view'))
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-sm leading-5">
+              <a
+                href="{{ route('auth.login.view') }}"
+                class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:underline focus:outline-none"
+              >
+                Back to login
+              </a>
+            </div>
+            @if(Route::has('auth.register.view'))
+              <div class="text-sm leading-5">
+                <a
+                  href="{{ route('auth.register.view') }}"
+                  class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:underline focus:outline-none"
+                >
+                  Create an account
+                </a>
+              </div>
+            @endif
+          </div>
+        @endif
+
+        <div class="mt-3">
           <button
             type="submit"
             class="focus:shadow-outline-blue group relative flex w-full justify-center rounded-md border border-transparent bg-slate-700 px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out hover:bg-slate-600 focus:border-blue-300 focus:outline-none active:bg-slate-700"
