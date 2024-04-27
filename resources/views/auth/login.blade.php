@@ -115,6 +115,39 @@
             Sign in
           </button>
         </div>
+        @if (Route::has('auth.provider.redirect'))
+          <div class="mt-6">
+            <div class="relative">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div class="relative flex justify-center text-sm leading-5">
+                <span class="bg-slate-800 px-2 text-gray-300">Or continue with</span>
+              </div>
+            </div>
+            @if (Config::get('services.github'))
+              <div class="mt-3 grid grid-cols-1 gap-3">
+                <a
+                  href="{{ route('auth.provider.redirect', ['provider' => 'github']) }}"
+                  class="focus:shadow-outline-blue group relative flex w-full justify-center rounded-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:bg-gray-100 focus:border-blue-300 focus:outline-none active:bg-gray-200"
+                >
+                  Sign in with GitHub
+                </a>
+              </div>
+            @endif
+
+            @if (Config::get('services.google'))
+              <div class="mt-3 grid grid-cols-1 gap-3">
+                <a
+                  href="{{ route('auth.provider.redirect', ['provider' => 'google']) }}"
+                  class="focus:shadow-outline-blue group relative flex w-full justify-center rounded-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:bg-gray-100 focus:border-blue-300 focus:outline-none active:bg-gray-200"
+                >
+                  Sign in with Google
+                </a>
+              </div>
+            @endif
+          </div>
+        @endif
       </form>
     </div>
   </div>

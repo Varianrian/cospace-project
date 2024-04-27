@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,7 @@ Route::group(['prefix' => 'auth'], function () {
         return view('auth.reset-password', ['token' => $token]);
     })->name('password.reset');
     Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('auth.reset-password');
+
+    Route::get('/{provider}/redirect', [ProviderController::class, 'redirect'])->name('auth.provider.redirect');
+    Route::get('/{provider}/callback', [ProviderController::class, 'callback'])->name('auth.provider.callback');
 });
