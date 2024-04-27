@@ -1,61 +1,61 @@
 @extends('layouts.app')
-
 @section('content')
-  <div class="flex min-h-screen items-center justify-center bg-slate-800 px-4 py-8 sm:px-6 lg:px-8">
-    <div class="mx-auto w-full max-w-md">
-      <div>
-        <img class="mx-auto h-12 w-auto" src="{{ asset('img/logo.png') }}" alt="Workflow" />
-        <h2 class="mt-6 text-center text-3xl font-extrabold leading-9 text-white">Reset your password</h2>
+  <div class="flex w-full">
+    @include('components.auth-banner')
+    <div class="min-h-screen w-2/5">
+      <div class="flex h-full w-full flex-col justify-center px-14">
+        <h1 class="text-3xl font-semibold text-slate-800">Reset Password</h1>
+        <form class="mt-7" action="{{ route('auth.reset-password') }}" method="POST">
+          @csrf
+          <input type="hidden" name="token" value="{{ $token }}" />
+          <input type="hidden" name="email" value="{{ request()->email }}" />
+
+          <div class="flex flex-col">
+            <div class="flex flex-col space-y-1">
+              <label for="password" class="text-sm font-medium text-slate-800">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                class="border-b-2 border-slate-800 pb-2 focus:border-[#0021A3] focus:outline-none"
+                placeholder="Masukan Password Baru"
+              />
+            </div>
+            <div class="mt-4">
+              @error('password')
+                <p class="text-xs italic text-red-500">{{ $message }}</p>
+              @enderror
+            </div>
+
+            <div class="mt-4 flex flex-col space-y-1">
+              <label for="password_confirmation" class="text-sm font-medium text-slate-800">Konfirmasi Password</label>
+              <input
+                id="password_confirmation"
+                name="password_confirmation"
+                type="password"
+                required
+                class="border-b-2 border-slate-800 pb-2 focus:border-[#0021A3] focus:outline-none"
+                placeholder="Konfirmasi Password Baru"
+              />
+            </div>
+            @if ($errors)
+              @foreach ($errors->all() as $error)
+                <p class="text-xs italic text-red-500">{{ $error }}</p>
+              @endforeach
+            @endif
+
+            <input
+              type="submit"
+              class="mt-10 rounded-md bg-[#0021A3] py-3 text-lg font-semibold text-white hover:bg-[#001A8D] focus:outline-none focus:ring-2 focus:ring-[#0021A3] focus:ring-opacity-50"
+              value="Reset Password"
+            />
+          </div>
+        </form>
+        <div class="mt-3 flex items-center justify-between">
+          <a href="{{ route('auth.login') }}" class="text-sm text-[#001A8D]">Kembali ke halaman Login</a>
+        </div>
       </div>
-      <form class="mt-8" action="{{ route('auth.reset-password') }}" method="POST">
-        @csrf
-        <input type="hidden" name="token" value="{{ $token }}" />
-        <input type="hidden" name="email" value="{{ request()->email }}" />
-        <div class="rounded-md shadow-sm">
-          <div>
-            <input
-              aria-label="Password"
-              name="password"
-              type="password"
-              required
-              class="focus:shadow-outline-blue relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-300 focus:outline-none sm:text-sm sm:leading-5"
-              placeholder="Password"
-            />
-          </div>
-          <div class="-mt-px">
-            <input
-              aria-label="Confirm Password"
-              name="password_confirmation"
-              type="password"
-              required
-              class="focus:shadow-outline-blue relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-300 focus:outline-none sm:text-sm sm:leading-5"
-              placeholder="Confirm Password"
-            />
-          </div>
-          @if ($errors)
-            @foreach ($errors->all() as $error)
-              <p class="text-xs italic text-red-500">{{ $error }}</p>
-            @endforeach
-          @endif
-        </div>
-        <div class="mt-6">
-          <button
-            type="submit"
-            class="focus:shadow-outline-blue group relative flex w-full justify-center rounded-md border border-transparent bg-slate-700 px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out hover:bg-slate-600 focus:border-blue-300 focus:outline-none active:bg-slate-700"
-          >
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-              <svg
-                class="h-5 w-5 text-slate-500 transition duration-150 ease-in-out group-hover:text-slate-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-              </svg>
-            </span>
-            Reset password
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 @endsection

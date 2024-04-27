@@ -1,164 +1,128 @@
 @extends('layouts.app')
 @section('content')
-  <div class="flex min-h-screen items-center justify-center bg-slate-800 px-4 py-8 sm:px-6 lg:px-8">
-    <div class="mx-auto w-full max-w-md">
-      @if (session('status'))
-        <div class="relative rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700" role="alert">
-          <strong class="font-bold">Success!</strong>
-          <span class="block sm:inline">{{ session('status') }}</span>
-          <span class="absolute bottom-0 right-0 top-0 px-4 py-3">
-            <svg
-              class="h-6 w-6 fill-current text-green-500"
-              role="button"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              id="close-button"
+  <div class="flex w-full">
+    @include('components.auth-banner')
+    <div class="min-h-screen w-2/5">
+      <div class="flex h-full w-full flex-col justify-center px-14">
+        <h1 class="text-3xl font-semibold text-slate-800">Masuk</h1>
+        <form class="mt-7" action="{{ route('auth.login') }}" method="POST">
+          @csrf
+          <div class="flex flex-col">
+            <div class="flex flex-col space-y-1">
+              <label for="email" class="text-sm font-medium text-slate-800">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                class="border-b-2 border-slate-800 pb-2 focus:border-[#0021A3] focus:outline-none"
+                placeholder="Masukan Email Anda"
+                value="{{ old('email') }}"
+              />
+            </div>
+            <div class="mt-2">
+              @error('email')
+                <p class="text-xs italic text-red-500">{{ $message }}</p>
+              @enderror
+            </div>
+
+            <div class="mt-4 flex flex-col space-y-1">
+              <label for="password" class="text-sm font-medium text-slate-800">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                class="border-b-2 border-slate-800 pb-2 focus:border-[#0021A3] focus:outline-none"
+                placeholder="Masukan Password Anda"
+              />
+            </div>
+            <div class="mt-4">
+              @error('password')
+                <p class="text-xs italic text-red-500">{{ $message }}</p>
+              @enderror
+            </div>
+
+            <div class="mt-2 flex items-center justify-between">
+              <div class="flex items-center">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  class="form-checkbox h-4 w-4 text-[#0021A3] transition duration-150 ease-in-out"
+                />
+                <label for="remember" class="ml-2 block text-sm text-slate-800">Ingat Saya</label>
+              </div>
+
+              @if (Route::has('auth.forgot-password.view'))
+                <a href="{{ route('auth.forgot-password.view') }}" class="text-sm text-slate-800">Lupa Password?</a>
+              @endif
+            </div>
+
+            <input
+              type="submit"
+              class="mt-10 rounded-md bg-[#0021A3] py-3 text-lg font-semibold text-white hover:bg-[#001A8D] focus:outline-none focus:ring-2 focus:ring-[#0021A3] focus:ring-opacity-50"
+              value="Masuk"
+            />
+          </div>
+        </form>
+
+        @if (Route::has('auth.provider.redirect'))
+          <p class="mt-3 text-center text-[#B5B5B5]">or</p>
+
+          @if (Config::get('services.google'))
+            <a
+              href="{{ route('auth.provider.redirect', 'google') }}"
+              class="mt-3 flex items-center justify-center rounded-md border border-[#0021A3] py-2 text-[#0021A3] hover:bg-[#0021A3] hover:text-white"
             >
-              <title>Close</title>
-              <path
-                fill-rule="evenodd"
-                d="M14.354 5.354a2 2 0 00-2.828 0L10 7.172 7.172 5.354a2 2 0 10-2.828 2.828L7.172 10l-2.828 2.828a2 2 0 102.828 2.828L10 12.828l2.828 2.828a2 2 0 102.828-2.828L12.828 10l2.828-2.828a2 2 0 000-2.828z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </span>
-        </div>
-      @endif
-
-      <div>
-        <img class="mx-auto h-12 w-auto" src="{{ asset('img/logo.png') }}" alt="Workflow" />
-        <h2 class="mt-6 text-center text-3xl font-extrabold leading-9 text-white">Sign in to your account</h2>
-      </div>
-      <form class="mt-8" action="{{ route('auth.login') }}" method="POST">
-        @csrf
-        <input type="hidden" name="remember" value="true" />
-        <div class="rounded-md shadow-sm">
-          <div>
-            <input
-              aria-label="Email address"
-              name="email"
-              type="email"
-              required
-              class="focus:shadow-outline-blue relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-300 focus:outline-none sm:text-sm sm:leading-5"
-              placeholder="Email address"
-            />
-          </div>
-
-          <div class="-mt-px">
-            <input
-              aria-label="Password"
-              name="password"
-              type="password"
-              required
-              class="focus:shadow-outline-blue relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-300 focus:outline-none sm:text-sm sm:leading-5"
-              placeholder="Password"
-            />
-          </div>
-          @if ($errors)
-            @foreach ($errors->all() as $error)
-              <p class="text-xs italic text-red-500">{{ $error }}</p>
-            @endforeach
-          @endif
-        </div>
-        <div class="mt-6 flex items-center justify-between">
-          <div class="flex items-center">
-            <input
-              id="remember"
-              type="checkbox"
-              class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-            />
-            <label for="remember" class="ml-2 block text-sm leading-5 text-gray-300">Remember me</label>
-          </div>
-        </div>
-        <div class="mt-2 flex justify-between">
-          @if (Route::has('auth.forgot-password.view'))
-            <div class="text-sm leading-5">
-              <a
-                href="{{ route('auth.forgot-password.view') }}"
-                class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:underline focus:outline-none"
-              >
-                Forgot your password?
-              </a>
-            </div>
-          @endif
-
-          @if (Route::has('auth.register.view'))
-            <div class="text-sm leading-5">
-              <a
-                href="{{ route('auth.register.view') }}"
-                class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:underline focus:outline-none"
-              >
-                Register
-              </a>
-            </div>
-          @endif
-        </div>
-        <div class="mt-6">
-          <button
-            type="submit"
-            class="focus:shadow-outline-indigo group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out hover:bg-indigo-500 focus:border-indigo-700 focus:outline-none active:bg-indigo-700"
-          >
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
               <svg
-                class="h-5 w-5 text-indigo-500 transition duration-150 ease-in-out group-hover:text-indigo-400"
+                class="mr-2 h-6 w-6"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
                 fill="currentColor"
-                viewBox="0 0 20 20"
+                viewBox="0 0 24 24"
               >
-                <path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                 <path
                   fill-rule="evenodd"
-                  d="M10 0a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 100-16 8 8 0 000 16z"
+                  d="M12.037 21.998a10.313 10.313 0 0 1-7.168-3.049 9.888 9.888 0 0 1-2.868-7.118 9.947 9.947 0 0 1 3.064-6.949A10.37 10.37 0 0 1 12.212 2h.176a9.935 9.935 0 0 1 6.614 2.564L16.457 6.88a6.187 6.187 0 0 0-4.131-1.566 6.9 6.9 0 0 0-4.794 1.913 6.618 6.618 0 0 0-2.045 4.657 6.608 6.608 0 0 0 1.882 4.723 6.891 6.891 0 0 0 4.725 2.07h.143c1.41.072 2.8-.354 3.917-1.2a5.77 5.77 0 0 0 2.172-3.41l.043-.117H12.22v-3.41h9.678c.075.617.109 1.238.1 1.859-.099 5.741-4.017 9.6-9.746 9.6l-.215-.002Z"
                   clip-rule="evenodd"
                 />
               </svg>
-            </span>
-            Sign in
-          </button>
-        </div>
-        @if (Route::has('auth.provider.redirect'))
-          <div class="mt-6">
-            <div class="relative">
-              <div class="absolute inset-0 flex items-center">
-                <div class="w-full border-t border-gray-300"></div>
-              </div>
-              <div class="relative flex justify-center text-sm leading-5">
-                <span class="bg-slate-800 px-2 text-gray-300">Or continue with</span>
-              </div>
-            </div>
-            @if (Config::get('services.github'))
-              <div class="mt-3 grid grid-cols-1 gap-3">
-                <a
-                  href="{{ route('auth.provider.redirect', ['provider' => 'github']) }}"
-                  class="focus:shadow-outline-blue group relative flex w-full justify-center rounded-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:bg-gray-100 focus:border-blue-300 focus:outline-none active:bg-gray-200"
-                >
-                  Sign in with GitHub
-                </a>
-              </div>
-            @endif
+              <p class="text-sm">Masuk dengan Google</p>
+            </a>
+          @endif
 
-            @if (Config::get('services.google'))
-              <div class="mt-3 grid grid-cols-1 gap-3">
-                <a
-                  href="{{ route('auth.provider.redirect', ['provider' => 'google']) }}"
-                  class="focus:shadow-outline-blue group relative flex w-full justify-center rounded-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:bg-gray-100 focus:border-blue-300 focus:outline-none active:bg-gray-200"
-                >
-                  Sign in with Google
-                </a>
-              </div>
-            @endif
-          </div>
+          @if (Config::get('services.github'))
+            <a
+              href="{{ route('auth.provider.redirect', 'github') }}"
+              class="mt-3 flex items-center justify-center rounded-md border border-[#0021A3] py-2 text-[#0021A3] hover:bg-[#0021A3] hover:text-white"
+            >
+              <svg
+                class="mr-2 h-6 w-6"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="text-sm">Masuk dengan Github</p>
+            </a>
+          @endif
         @endif
-      </form>
+
+        <p class="mt-4 text-center">
+          Belum punya akun?
+          <a href="{{ route('auth.register.view') }}" class="font-medium underline hover:text-[#0021A3]">Daftar</a>
+        </p>
+      </div>
     </div>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('email').focus();
-    });
-
-    document.getElementById('close-button').addEventListener('click', function () {
-      this.parentElement.parentElement.style.display = 'none';
-    });
-  </script>
 @endsection
