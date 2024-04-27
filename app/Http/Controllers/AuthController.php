@@ -22,6 +22,11 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+
         $credentials = $request->only('email', 'password');
         $remember = $request->remember;
 
@@ -50,13 +55,13 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password)
         ]);
 
         return redirect('auth/login')->with('status', 'User Registered Successfully!');
@@ -81,7 +86,7 @@ class AuthController extends Controller
     public function sendResetLinkEmail(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
         ]);
 
         $status = Password::sendResetLink(
