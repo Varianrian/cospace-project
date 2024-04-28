@@ -16,7 +16,7 @@
                 name="email"
                 type="email"
                 required
-                class="border-b-2 border-slate-800 pb-2 focus:border-[#0021A3] focus:outline-none"
+                class="border-0 border-b-2 border-slate-800 p-0 pb-2 focus:border-[#0021A3] focus:outline-none focus:ring-0"
                 placeholder="Masukan Email Anda"
                 value="{{ old('email') }}"
               />

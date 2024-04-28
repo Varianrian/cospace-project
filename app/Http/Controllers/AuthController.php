@@ -33,11 +33,17 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with([
+                'status' => 'success',
+                'message' => 'Logged in successfully!'
+            ]);
         }
 
         if (Auth::viaRemember()) {
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with([
+                'status' => 'success',
+                'message' => 'Logged in successfully!'
+            ]);
         }
 
         return back()->withErrors([
@@ -64,7 +70,10 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        return redirect('auth/login')->with('status', 'User Registered Successfully!');
+        return redirect('auth/login')->with([
+            'status' => 'success',
+            'message' => 'Account created successfully! Please login to continue.'
+        ]);
     }
 
     public function logout(Request $request)
@@ -75,7 +84,10 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with([
+            'status' => 'success',
+            'message' => 'Logged out successfully!'
+        ]);
     }
 
     public function forgotPassword()
@@ -94,8 +106,13 @@ class AuthController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+            ? back()->with([
+                'status' => 'success',
+                'message' => __($status)
+            ])
+            : back()->withErrors([
+                'email' => __($status)
+            ]);
     }
 
     public function resetPassword(Request $request)
