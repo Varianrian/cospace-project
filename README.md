@@ -5,7 +5,7 @@
 This project is major assignment in Software Engineering course at University of Padjadjaran. The project is to develop a web application that allows users to book a meeting room. The application is called CoSpace. The project is developed by a team of 4 students. The team members are:
 
 1. [Varian Avila Faldi](140810210055)
-2. [xxxxx](140810210xxx)
+2. [Adinda Salsabila](140810210017)
 3. [xxxxx](140810210xxx)
 4. [xxxxx](140810210xxx)
 
