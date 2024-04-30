@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-  @yield('components.homebanner')
-  @yield('components.recommendation')
-  @yield('components.facilities')
-  @yield('components.testimoni')
-  @yield('components.faq')
+  @include('components.homebanner')
+  @include('components.recommendation')
+  @include('components.facilities')
+  @include('components.testimoni')
+  @include('components.faq')
 @endsection
 

@@ -1,6 +1,3 @@
-@extends('pages.home')
-
-@section('components.homebanner')
 <div class="relative">
     <div class="bgbanner absolute mt-12 left-0 w-full h-72 bg-indigo-200 z-[-1] object-cover"></div>
     <div class="banner mx-28 mt-14 w-1178 h-430 top-109 left-131 bg-indigo-950 rounded-lg z-10">
@@ -52,4 +49,3 @@
         </div>
     </div>
   </div>
-  @endsection

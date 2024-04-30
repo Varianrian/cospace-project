@@ -1,5 +1,3 @@
-@extends('pages.home')
-
 <div class="fasilitas mt-12 w-full h-108 bg-teal-100 object-cover">
     <div class="grid grid-cols-2">
         <div class="fasilitas-kiri">

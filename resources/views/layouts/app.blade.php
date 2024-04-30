@@ -20,7 +20,7 @@
 
   <body>
     @include('partials.navbar')
-    @yield('pages.home')
+    @yield('content')
     @include('components.toast')
     @include('partials.footer')
   </body>
