@@ -3,7 +3,7 @@
         <div class="grid grid-cols-4 gap-4 mx-10 ">
             <div class="rekomendasi p-5 pb-1 max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                 <a href="#">
-                    <img class="rounded-t-lg" src="banner1.png" alt="" />
+                    <img class="rounded-t-lg" src="{{ asset('assets/images/banner1.png') }}" alt="banner1" />
                 </a>
                 <div class="py-5 px-2">
                     <a href="#">
@@ -37,7 +37,7 @@
             </div>
             <div class="rekomendasi p-5 pb-1 max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                 <a href="#">
-                    <img class="rounded-t-lg" src="banner1.png" alt="" />
+                    <img class="rounded-t-lg" src="{{ asset('assets/images/banner1.png') }}" alt="banner1" />
                 </a>
                 <div class="py-5 px-2">
                     <a href="#">
@@ -71,7 +71,7 @@
             </div>
             <div class="rekomendasi p-5 pb-1 max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                 <a href="#">
-                    <img class="rounded-t-lg" src="banner1.png" alt="" />
+                    <img class="rounded-t-lg" src="{{ asset('assets/images/banner1.png') }}" alt="banner1" />
                 </a>
                 <div class="py-5 px-2">
                     <a href="#">
@@ -105,7 +105,7 @@
             </div>
             <div class="rekomendasi p-5 pb-1 max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                 <a href="#">
-                    <img class="rounded-t-lg" src="banner1.png" alt="" />
+                    <img class="rounded-t-lg" src="{{ asset('assets/images/banner1.png') }}" alt="banner1" />
                 </a>
                 <div class="py-5 px-2">
                     <a href="#">

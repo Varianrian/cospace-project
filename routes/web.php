@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,7 @@ use App\Http\Controllers\ProviderController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home', [
-        "title" => "Home"
-    ]);
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/workspace', function () {
     return view('pages.workspace',[

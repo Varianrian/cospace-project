@@ -15,9 +15,9 @@
         <div class="hidden lg:flex lg:items-center lg:w-auto" id="navbarSupportedContent">
               <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                 <li class="nav-item">
-                  <a href="/" class="nav-link {{ ($title === 'Home') ? 'active' : '' }} text-green-600 {{ ($title === 'Home') ? 'font-normal' : '' }}">
-                      Home
-                  </a>
+                    <a href="{{ route('home') }}" class="font-medium underline text-green-600" >
+                        Home
+                    </a>
                 </li>            
                 <li class="nav-item dropdown ml-0 lg:ml-8">
                   <a class="nav-link dropdown-toggle" href="/Workspace" role="button" aria-expanded="false">
@@ -30,11 +30,11 @@
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                   </ul>
                 </li>
-                <li class="nav-item ml-0 lg:ml-8">
+                {{-- <li class="nav-item ml-0 lg:ml-8">
                   <a href="/aboutus" class="nav-link {{ ($title === 'Tentang Kami') ? 'active' : '' }} text-blue-600">
                       Tentang Kami
                   </a>
-                </li>
+                </li> --}}
               </ul>
               <form class="flex ml-0 lg:ml-8" role="search">
                   <div class="relative flex items-center">

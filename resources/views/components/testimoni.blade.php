@@ -3,7 +3,7 @@
 <div class="grid grid-cols-3 gap-8 mx-24">
     <div class="testi p-5 pb-1 max-w-sm bg-indigo-200 border border-gray-200 rounded-lg">
         <div class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img class="w-8 h-8" src="testi1.png" alt="">
+            <img class="w-8 h-8" src="{{ asset('assets/images/testi1.png') }}" alt="testi1">
             <span>
                 <h5 class="text-sm font-bold text-black md:text-sm lg:text-sm">Celine Dion</h5>
                 <p class="mt-1 text-xs text-left font-light text-black lg:text-xs ">Cafe owner</p>
@@ -32,7 +32,7 @@
     </div>
     <div class="testi p-5 pb-1 max-w-sm bg-white border border-gray-200 rounded-lg">
         <div class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img class="w-8 h-8" src="testi2.png" alt="">
+            <img class="w-8 h-8" src="{{ asset('assets/images/testi2.png') }}" alt="testi2">
             <span>
                 <h5 class="text-sm font-bold text-black md:text-sm lg:text-sm">Riana Madiva</h5>
                 <p class="mt-1 text-xs text-left font-light text-black lg:text-xs ">Digital Marketer</p>
@@ -61,7 +61,7 @@
     </div>
     <div class="testi p-5 pb-1 max-w-sm bg-indigo-200 border border-gray-200 rounded-lg">
         <div class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img class="w-8 h-8" src="testi3.png" alt="">
+            <img class="w-8 h-8" src="{{ asset('assets/images/testi3.png') }}" alt="testi3">
             <span>
                 <h5 class="text-sm font-bold text-black md:text-sm lg:text-sm">John Melon</h5>
                 <p class="mt-1 text-xs text-left font-light text-black lg:text-xs ">Freelancer</p>
