@@ -16,7 +16,19 @@ use App\Http\Controllers\ProviderController;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('pages.home', [
+        "title" => "Home"
+    ]);
+});
+
+Route::get('/workspace', function () {
+    return view('pages.workspace',[
+    ]);
+});
+
+Route::get('/aboutus', function () {
+    return view('pages.aboutus', [
+    ]);
 });
 
 Route::group(['prefix' => 'auth'], function () {

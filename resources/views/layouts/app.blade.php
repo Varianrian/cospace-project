@@ -19,7 +19,9 @@
   </head>
 
   <body>
-    @yield('content')
+    @include('partials.navbar')
+    @yield('pages.home')
     @include('components.toast')
+    @include('partials.footer')
   </body>
 </html>
