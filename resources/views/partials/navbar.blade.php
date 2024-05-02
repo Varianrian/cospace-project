@@ -50,10 +50,22 @@
                   </div>  
               </form>
               <ul class="nav-item ml-0 lg:ml-8 mr-16 flex items-center">
-                  <a href="profile.html"
-                      class="btn rounded-xl text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-2 focus:outline-none focus:ring-indigo-500 font-medium text-sm px-4 py-2 dark:bg-indigo-800 dark:hover:bg-indigo-700 dark:focus:ring-indigo-600 ">
-                      Profile
-                  </a>
+                @auth
+                    <form action="{{ route('auth.logout') }}" method="POST" class="flex items-center">
+                        @csrf
+                            <button
+                                type="submit"
+                                class="btn rounded-xl bg-indigo-700 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-800 dark:hover:bg-indigo-700 dark:focus:ring-indigo-600">
+                            Logout
+                            </button>
+                    </form>
+                    @else
+                    <a
+                        href="{{ route('auth.login') }}"
+                        class="btn rounded-xl bg-indigo-700 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-800 dark:hover:bg-indigo-700 dark:focus:ring-indigo-600">
+                    Login
+                    </a>
+                @endauth   
               </ul>
         </div>
     </div>

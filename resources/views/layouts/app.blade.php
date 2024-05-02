@@ -19,9 +19,13 @@
   </head>
 
   <body>
-    @include('partials.navbar')
+    @if (! Request::is('auth/*'))
+      @include('partials.navbar')
+    @endif
     @yield('content')
     @include('components.toast')
-    @include('partials.footer')
+    @if (! Request::is('auth/*'))
+      @include('partials.footer')
+    @endif
   </body>
 </html>
