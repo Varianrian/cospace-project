@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WorkspaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +18,12 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
 
-Route::get('/workspace', function () {
-    return view('pages.workspace',[
-    ]);
-});
+// Route::get('/workspace', function () {
+//     return view('pages.workspace',[
+//     ]);
+// });
 
 Route::get('/aboutus', function () {
     return view('pages.aboutus', [
