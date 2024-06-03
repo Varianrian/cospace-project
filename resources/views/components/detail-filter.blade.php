@@ -91,7 +91,7 @@
                     <p class="flex justify-end text-right text-[20px] text-[#079D75] font-semibold">Rp 15,000.00/Jam</p>
                     <p class="flex justify-end text-right text-[14px] text-[#B3B3B3]">*Belum termasuk PPN </p>
                     <div class="flex justify-end mt-24">
-                        <a href="#" class="items-center px-7 py-4 text-[14px] rounded-[15px] font-light text-center text-white bg-[#0F6FFF] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <a href="{{ route('payment') }}" class="items-center px-7 py-4 text-[14px] rounded-[15px] font-light text-center text-white bg-[#0F6FFF] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             Pesan Sekarang
                         </a>
                     </div>
