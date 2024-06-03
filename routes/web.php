@@ -20,17 +20,14 @@ use App\Http\Controllers\PaymentController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
+Route::get('/detailworkspace', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
 Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 
-// Route::get('/workspace', function () {
-//     return view('pages.workspace',[
+
+// Route::get('/aboutus', function () {
+//     return view('pages.aboutus', [
 //     ]);
 // });
-
-Route::get('/aboutus', function () {
-    return view('pages.aboutus', [
-    ]);
-});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login.view');

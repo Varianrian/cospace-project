@@ -620,7 +620,7 @@
         <p class="ms-1 text-xs text-black">(17 ulasan)</p>
       </div>
       <a
-        href="{{ route('payment') }}"
+        href="#"
         class="ml-[185px] mt-6 inline-flex h-[37px] w-[78px] items-center justify-center rounded-lg bg-[#0021A3] px-5 py-2 text-center text-[14px] font-light text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
       >
         Lihat
