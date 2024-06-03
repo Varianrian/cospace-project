@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 @section('content')
-    <h1>Halaman Workspace</h1>
+  @include('components.workspace-banner')
 @endsection
