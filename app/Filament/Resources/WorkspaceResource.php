@@ -12,12 +12,14 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class WorkspaceResource extends Resource
 {
     protected static ?string $model = Workspace::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     protected static ?string $navigationGroup = 'Workspace Manager';
 
@@ -50,6 +52,16 @@ class WorkspaceResource extends Resource
                 Forms\Components\TextInput::make('rating_count')
                     ->required()
                     ->numeric(),
+                SpatieMediaLibraryFileUpload::make(Workspace::MEDIA_COLLECTION)
+                    ->collection(Workspace::MEDIA_COLLECTION)
+                    ->multiple()
+                    ->maxFiles(5)
+                    ->downloadable()
+                    ->columnSpanFull()
+                    ->reorderable(),
+                CheckboxList::make('facilities')
+                    ->relationship(titleAttribute: 'name')
+                    ->bulkToggleable()
             ]);
     }
 
