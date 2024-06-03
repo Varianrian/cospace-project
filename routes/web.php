@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WorkspaceController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\WorkspaceController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
+Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 
 // Route::get('/workspace', function () {
 //     return view('pages.workspace',[

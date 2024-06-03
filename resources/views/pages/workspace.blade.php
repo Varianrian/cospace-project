@@ -3,4 +3,3 @@
 @section('content')
   @include('components.workspace-banner')
 @endsection
-
