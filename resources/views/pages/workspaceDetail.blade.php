@@ -6,4 +6,3 @@
   @include('components.ulasan')
   @include('components.detail-relevan')
 @endsection
-
