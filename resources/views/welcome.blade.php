@@ -833,7 +833,7 @@
 
   <body class="antialiased">
     <div
-      class="bg-dots-darker dark:bg-dots-lighter relative min-h-screen bg-gray-100 bg-center selection:bg-red-500 selection:text-white sm:flex sm:items-center sm:justify-center dark:bg-gray-900"
+      class="bg-dots-darker dark:bg-dots-lighter relative min-h-screen bg-gray-100 bg-center selection:bg-red-500 selection:text-white dark:bg-gray-900 sm:flex sm:items-center sm:justify-center"
     >
       @if (Route::has('auth.login'))
         <div class="z-10 p-6 text-right sm:fixed sm:right-0 sm:top-0">

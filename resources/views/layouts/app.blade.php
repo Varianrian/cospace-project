@@ -22,6 +22,7 @@
     @if (! Request::is('auth/*'))
       @include('partials.navbar')
     @endif
+
     @yield('content')
     @include('components.toast')
     @if (! Request::is('auth/*'))
