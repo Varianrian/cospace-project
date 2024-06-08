@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -64,11 +65,13 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
+
+        event(new Registered($user));
 
         return redirect('auth/login')->with([
             'status' => 'success',
