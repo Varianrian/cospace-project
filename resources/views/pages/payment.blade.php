@@ -46,16 +46,23 @@
         </article>
         <section class="mt-9 rounded-md border-2 border-solid border-zinc-400 bg-white p-6">
           <header class="py-1.5 text-2xl font-semibold text-black">Identitas Pemesan</header>
-          <div class="mt-4">
-            <div>
-              <label class="block text-lg text-stone-500">Nama</label>
-              <input type="text" class="w-full rounded border border-black p-3" placeholder="John Doe" />
-            </div>
+          <form id="paymentForm">
             <div class="mt-4">
-              <label class="block text-lg text-stone-500">Email</label>
-              <input type="email" class="w-full rounded border border-black p-3" placeholder="John_Doe@gmail.com" />
+              <div>
+                <label class="block text-lg text-stone-500">Nama</label>
+                <input type="text" id="name" class="w-full rounded border border-black p-3" placeholder="John Doe" />
+              </div>
+              <div class="mt-4">
+                <label class="block text-lg text-stone-500">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full rounded border border-black p-3"
+                  placeholder="John_Doe@gmail.com"
+                />
+              </div>
             </div>
-          </div>
+          </form>
         </section>
       </div>
       <aside class="w-1/3">
@@ -97,12 +104,13 @@
             <span class="font-medium">Rp 66,000.00</span>
           </div>
           <div class="mt-12 flex w-full flex-col items-center justify-center">
-            <a
-              href="#"
+            <button
+              type="submit"
               class="mb-5 flex w-44 justify-center rounded-xl bg-blue-600 py-3 text-sm font-medium text-white shadow-sm"
+              form="paymentForm"
             >
               Bayar
-            </a>
+            </button>
             <a href="#" class="flex w-44 justify-center rounded-xl bg-zinc-400 py-3 text-sm font-medium text-white">
               Lihat Tiket
             </a>
@@ -111,4 +119,36 @@
       </aside>
     </section>
   </div>
+  <script>
+    document.getElementById('paymentForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      if (!name || !email) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      try {
+        const response = await fetch('https://your-api-endpoint.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        alert('Payment successful! Transaction ID: ' + result.transactionId);
+      } catch (error) {
+        alert('Payment failed: ' + error.message);
+      }
+    });
+  </script>
 @endsection
