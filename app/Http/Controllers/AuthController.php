@@ -31,9 +31,15 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->remember;
 
+        $user = User::where('email', $request->email)->first();
+        if ($user && !$user->hasVerifiedEmail()) {
+            return back()->withErrors([
+                'email' => 'Please verify your email address first.'
+            ]);
+        }
+
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-
             return redirect()->intended('/')->with([
                 'status' => 'success',
                 'message' => 'Logged in successfully!'
@@ -75,7 +81,7 @@ class AuthController extends Controller
 
         return redirect('auth/login')->with([
             'status' => 'success',
-            'message' => 'Account created successfully! Please login to continue.'
+            'message' => 'Registered successfully! Please verify your email address.'
         ]);
     }
 

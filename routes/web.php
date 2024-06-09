@@ -6,6 +6,8 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\PaymentController;
+use Illuminate\Http\Request;
+use App\Http\Requests\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login.view');
-    Route::post('login', [AuthController::class, 'authenticate'])->name('auth.login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('login');
     Route::get('register', [AuthController::class, 'register'])->name('auth.register.view');
     Route::post('register', [AuthController::class, 'store'])->name('auth.register');
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -44,4 +46,27 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::get('/{provider}/redirect', [ProviderController::class, 'redirect'])->name('auth.provider.redirect');
     Route::get('/{provider}/callback', [ProviderController::class, 'callback'])->name('auth.provider.callback');
+});
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect()->route('auth.login.view')
+        ->with([
+            'status' => 'success',
+            'message' => 'Email verified successfully, please login.'
+        ]);
+})->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+Route::group(['prefix' => 'api'], function () {
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
 });

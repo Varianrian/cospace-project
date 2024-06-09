@@ -5,7 +5,7 @@
     <div class="min-h-screen w-2/5">
       <div class="flex h-full w-full flex-col justify-center px-14">
         <h1 class="text-3xl font-semibold text-slate-800">Masuk</h1>
-        <form class="mt-7" action="{{ route('auth.login') }}" method="POST">
+        <form class="mt-7" action="{{ route('login') }}" method="POST">
           @csrf
           <div class="flex flex-col">
             <div class="flex flex-col space-y-1">
