@@ -105,7 +105,7 @@
           </form>
         @else
           <a
-            href="{{ route('auth.login') }}"
+            href="{{ route('login') }}"
             class="btn mr-[60px] rounded-[10px] bg-[#0021A3] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
           >
             Profil

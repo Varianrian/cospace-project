@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -30,9 +31,15 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->remember;
 
+        $user = User::where('email', $request->email)->first();
+        if ($user && !$user->hasVerifiedEmail()) {
+            return back()->withErrors([
+                'email' => 'Please verify your email address first.'
+            ]);
+        }
+
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-
             return redirect()->intended('/')->with([
                 'status' => 'success',
                 'message' => 'Logged in successfully!'
@@ -64,15 +71,17 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
 
+        event(new Registered($user));
+
         return redirect('auth/login')->with([
             'status' => 'success',
-            'message' => 'Account created successfully! Please login to continue.'
+            'message' => 'Registered successfully! Please verify your email address.'
         ]);
     }
 

@@ -32,6 +32,8 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
         'provider',
         'provider_id',
         'provider_token',
+        'role',
+        'email_verified_at'
     ];
 
     /**
