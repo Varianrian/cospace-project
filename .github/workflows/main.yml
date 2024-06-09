@@ -23,7 +23,7 @@ jobs:
 
       - name: Migrate DB
         run: |
-          php artisan migrate
+          php artisan migrate --force
         env:
           APP_ENV: production
           DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
