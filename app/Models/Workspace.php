@@ -2,23 +2,24 @@
 
 namespace App\Models;
 
+use App\Models\Facility;
+use App\Models\WorkspaceCategory;
+use App\Models\WorkspaceFacility;
+use App\Models\WorkspaceRoom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Workspace extends Model implements HasMedia
+class Workspace extends Model
 {
     use HasFactory;
-    use InteractsWithMedia;
 
     /**
-     * The media collection name.
+     * The attributes that are mass assignable.
      *
-     * @var string
+     * @var string[]
      */
-    const MEDIA_COLLECTION = 'workspace-images';
-
     protected $fillable = [
         'name',
         'price',
@@ -30,19 +31,47 @@ class Workspace extends Model implements HasMedia
         'rating_count',
     ];
 
-    protected $casts = [
-        'rating_avg' => 'float',
-    ];
-
-    public function facilities()
+    /**
+     * Model relationship definition.
+     * Workspace belongs to many Facilities
+     *
+     * @return BelongsToMany
+     */
+    public function facilities(): BelongsToMany
     {
         return $this->belongsToMany(Facility::class, 'workspace_facilities');
     }
 
-    public function registerMediaCollections(): void
+    /**
+     * Model relationship definition.
+     * Workspace belongs to many WorkspaceCategories
+     *
+     * @return BelongsToMany
+     */
+    public function categories(): BelongsToMany
     {
-        $this->addMediaCollection(self::MEDIA_COLLECTION)
-            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpg']);
+        return $this->belongsToMany(WorkspaceCategory::class, 'workspace_rooms');
     }
 
+    /**
+     * Model relationship definition.
+     * Workspace has many WorkspaceFacilities
+     *
+     * @return HasMany
+     */
+    public function workspaceFacilities(): HasMany
+    {
+        return $this->hasMany(WorkspaceFacility::class, 'workspace_id');
+    }
+
+    /**
+     * Model relationship definition.
+     * Workspace has many WorkspaceRooms
+     *
+     * @return HasMany
+     */
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(WorkspaceRoom::class, 'workspace_id');
+    }
 }

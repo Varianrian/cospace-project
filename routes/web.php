@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WorkspaceListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProviderController;
@@ -71,6 +72,6 @@ Route::group(['prefix' => 'v1'], function () {
         return $request->user();
     });
 
-    Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)
-        ->only(['index', 'show']);
+    Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)->only(['index', 'show']);
+    Route::apiResource('workspaces', WorkspaceListController::class)->only(['index', 'show']);
 });
