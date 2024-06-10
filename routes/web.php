@@ -6,6 +6,7 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\WorkspaceCategoriesController;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmailVerificationRequest;
 
@@ -69,4 +70,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('user', function (Request $request) {
         return $request->user();
     });
+
+    Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)
+        ->only(['index', 'show']);
 });
