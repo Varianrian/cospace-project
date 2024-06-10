@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WorkspaceCategoriesController;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmailVerificationRequest;
+use App\Http\Controllers\WorkspaceRoomsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,5 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)->only(['index', 'show']);
     Route::apiResource('workspaces', WorkspaceListController::class)->only(['index', 'show']);
+    Route::apiResource('workspace_rooms', WorkspaceRoomsController::class)->only(['index', 'show']);
 });

@@ -48,8 +48,7 @@ class WorkspaceRoomResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('workspace_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('workspace.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
@@ -59,8 +58,7 @@ class WorkspaceRoomResource extends Resource
                 Tables\Columns\TextColumn::make('capacity')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('workspace_category_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('workspaceCategory.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
