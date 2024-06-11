@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+
 
 class WorkspaceRoomResource extends Resource
 {
@@ -41,6 +43,13 @@ class WorkspaceRoomResource extends Resource
                 Forms\Components\Select::make('workspace_category_id')
                     ->relationship('workspaceCategory', 'name')
                     ->required(),
+                SpatieMediaLibraryFileUpload::make(WorkspaceRoom::MEDIA_COLLECTION)
+                    ->collection(WorkspaceRoom::MEDIA_COLLECTION)
+                    ->multiple()
+                    ->maxFiles(5)
+                    ->downloadable()
+                    ->columnSpanFull()
+                    ->reorderable(),
             ]);
     }
 
