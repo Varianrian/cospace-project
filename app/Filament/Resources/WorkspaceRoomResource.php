@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+
 
 class WorkspaceRoomResource extends Resource
 {
@@ -41,6 +43,13 @@ class WorkspaceRoomResource extends Resource
                 Forms\Components\Select::make('workspace_category_id')
                     ->relationship('workspaceCategory', 'name')
                     ->required(),
+                SpatieMediaLibraryFileUpload::make(WorkspaceRoom::MEDIA_COLLECTION)
+                    ->collection(WorkspaceRoom::MEDIA_COLLECTION)
+                    ->multiple()
+                    ->maxFiles(5)
+                    ->downloadable()
+                    ->columnSpanFull()
+                    ->reorderable(),
             ]);
     }
 
@@ -48,8 +57,7 @@ class WorkspaceRoomResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('workspace_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('workspace.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
@@ -59,8 +67,7 @@ class WorkspaceRoomResource extends Resource
                 Tables\Columns\TextColumn::make('capacity')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('workspace_category_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('workspaceCategory.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

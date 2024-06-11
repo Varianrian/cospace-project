@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,11 @@ return new class extends Migration
     {
         Schema::create('workspace_rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workspace_id')->constrained('workspaces');
+            $table->foreignId('workspace_id')->constrained('workspaces')->cascadeOnDelete();
             $table->string('name');
             $table->integer('price');
             $table->integer('capacity');
-            $table->foreignId('workspace_category_id')->constrained('workspace_categories');
+            $table->foreignId('workspace_category_id')->constrained('workspace_categories')->cascadeOnDelete();
             $table->timestamps();
         });
     }

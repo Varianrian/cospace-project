@@ -26,14 +26,22 @@ class CreateSuperAdmin extends Command
      */
     public function handle()
     {
-        $name = $this->ask('What is your name?');
-        $email = $this->ask('What is your email?');
-        $password = $this->secret('What is your password?');
+        // $name = $this->ask('What is your name?');
+        // $email = $this->ask('What is your email?');
+        // $password = $this->secret('What is your password?');
 
-        $user = User::create([
-            'name' => $name,
-            'email' => $email,
-            'password' => bcrypt($password),
+        // $user = User::create([
+        //     'name' => $name,
+        //     'email' => $email,
+        //     'password' => bcrypt($password),
+        //     'role' => 'admin',
+        // ]);
+
+        // Make it only admin
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password'),
             'role' => 'admin',
         ]);
 

@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\WorkspaceListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\WorkspaceCategoriesController;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmailVerificationRequest;
+use App\Http\Controllers\WorkspaceRoomsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +72,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('payment/charge', [PaymentController::class, 'charge'])->name('payment.charge');
+
+    Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)->only(['index', 'show']);
+    Route::apiResource('workspaces', WorkspaceListController::class)->only(['index', 'show']);
+    Route::apiResource('workspace_rooms', WorkspaceRoomsController::class)->only(['index', 'show']);
 });
