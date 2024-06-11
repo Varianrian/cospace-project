@@ -23,7 +23,7 @@ jobs:
 
       - name: Migrate DB
         run: |
-          php artisan migrate:fresh --seed
+          php artisan migrate:fresh --seed --force
         env:
           APP_ENV: production
           DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
