@@ -32,6 +32,7 @@ class WorkspaceRoom extends Model implements HasMedia
      * @var string[]
      */
     protected $fillable = [
+        'id',
         'workspace_id',
         'name',
         'price',

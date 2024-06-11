@@ -73,6 +73,8 @@ Route::group(['prefix' => 'v1'], function () {
         return $request->user();
     });
 
+    Route::post('payment/charge', [PaymentController::class, 'charge'])->name('payment.charge');
+
     Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)->only(['index', 'show']);
     Route::apiResource('workspaces', WorkspaceListController::class)->only(['index', 'show']);
     Route::apiResource('workspace_rooms', WorkspaceRoomsController::class)->only(['index', 'show']);

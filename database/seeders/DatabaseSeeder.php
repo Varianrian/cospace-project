@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             WorkspaceCategorySeeder::class,
             FacilitySeeder::class,
             WorkspaceSeeder::class,
+            WorkspaceRoomSeeder::class,
         ]);
     }
 }
