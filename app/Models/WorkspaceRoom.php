@@ -11,10 +11,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class WorkspaceRoom extends Model
+class WorkspaceRoom extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
+
+    /**
+     * The media collection name.
+     *
+     * @var string
+     */
+    const MEDIA_COLLECTION = 'workspace-images';
 
     /**
      * The attributes that are mass assignable.
@@ -71,5 +81,23 @@ class WorkspaceRoom extends Model
     public function workspaceCategory(): BelongsTo
     {
         return $this->belongsTo(WorkspaceCategory::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection(self::MEDIA_COLLECTION)
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpg']);
+    }
+
+    public function getFirstMediaUrlAttribute(): string
+    {
+        return $this->getFirstMediaUrl(self::MEDIA_COLLECTION);
+    }
+
+    public function getMediaUrlsAttribute(): array
+    {
+        return $this->getMedia(self::MEDIA_COLLECTION)->map(function ($media) {
+            return $media->getUrl();
+        })->toArray();
     }
 }

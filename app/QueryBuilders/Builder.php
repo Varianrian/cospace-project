@@ -108,11 +108,23 @@ abstract class Builder
      */
     public function query(): QueryBuilder
     {
-        return $this->getBuilder()
+        return $this->getBuilder() //@phpstan-ignore-line
             ->allowedFields($this->getAllowedFields())
             ->allowedFilters($this->getAllowedFilters())
             ->allowedSorts($this->getAllowedSorts())
             ->defaultSort($this->getDefaultSort())
             ->allowedIncludes($this->getAllowedIncludes());
     }
+
+    /**
+     * Get the list of allowed appends that can be used in any append operations.
+     *
+     * @return string[]
+     */
+    protected function getAllowedAppends(): array
+    {
+        return [];
+    }
+
+
 }

@@ -10,10 +10,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Workspace extends Model
+class Workspace extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
+
+    /**
+     * The media collection name.
+     *
+     * @var string
+     */
+    const MEDIA_COLLECTION = 'workspace-images';
 
     /**
      * The attributes that are mass assignable.
@@ -73,5 +83,23 @@ class Workspace extends Model
     public function rooms(): HasMany
     {
         return $this->hasMany(WorkspaceRoom::class, 'workspace_id');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection(self::MEDIA_COLLECTION)
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpg']);
+    }
+
+    public function getFirstMediaUrlAttribute(): string
+    {
+        return $this->getFirstMediaUrl(self::MEDIA_COLLECTION);
+    }
+
+    public function getMediaUrlsAttribute(): array
+    {
+        return $this->getMedia(self::MEDIA_COLLECTION)->map(function ($media) {
+            return $media->getUrl();
+        })->toArray();
     }
 }

@@ -15,6 +15,10 @@ class WorkspaceRoomResource extends JsonResource
      */
     public function toArray($request)
     {
+        $this->resource->image = $this->resource->getMediaUrlsAttribute();
+        if ($this->resource->media != null) {
+            unset($this->resource->media);
+        }
         return parent::toArray($request);
     }
 }

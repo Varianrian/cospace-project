@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a658218951afa21026abcceb10ad5a1",
+    "content-hash": "19256158d8b7e0715dbbfe58e35c32cd",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -6076,16 +6076,16 @@
         },
         {
             "name": "spatie/laravel-query-builder",
-            "version": "6.0.1",
+            "version": "5.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-query-builder.git",
-                "reference": "69a6fd38c1515e42aec0df10d8adb8465f2f1f79"
+                "reference": "caa8467fa9e127ba7ea9e0aac93c71324365bae2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/69a6fd38c1515e42aec0df10d8adb8465f2f1f79",
-                "reference": "69a6fd38c1515e42aec0df10d8adb8465f2f1f79",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/caa8467fa9e127ba7ea9e0aac93c71324365bae2",
+                "reference": "caa8467fa9e127ba7ea9e0aac93c71324365bae2",
                 "shasum": ""
             },
             "require": {
@@ -6098,11 +6098,10 @@
             "require-dev": {
                 "ext-json": "*",
                 "mockery/mockery": "^1.4",
-                "nunomaduro/larastan": "^2.0",
                 "orchestra/testbench": "^7.0|^8.0",
                 "pestphp/pest": "^2.0",
-                "phpunit/phpunit": "^10.0",
-                "spatie/invade": "^2.0"
+                "spatie/invade": "^2.0",
+                "spatie/laravel-ray": "^1.28"
             },
             "type": "library",
             "extra": {
@@ -6146,7 +6145,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-05-21T12:12:10+00:00"
+            "time": "2024-05-10T08:19:35+00:00"
         },
         {
             "name": "spatie/temporary-directory",
