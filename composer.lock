@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19256158d8b7e0715dbbfe58e35c32cd",
+    "content-hash": "b91062297b1e3f78b9c34104034f5b1d",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -9873,111 +9873,6 @@
                 }
             ],
             "time": "2024-04-24T06:32:35+00:00"
-        },
-        {
-            "name": "richan-fongdasen/laravel-api-generator",
-            "version": "1.8.3",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.com:suitmedia/laravel-api-generator.git",
-                "reference": "9b591f1818a7cb86e1ae1dca3c3e07ff5756f685"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/suitmedia%2Flaravel-api-generator/repository/archive.zip?sha=9b591f1818a7cb86e1ae1dca3c3e07ff5756f685",
-                "reference": "9b591f1818a7cb86e1ae1dca3c3e07ff5756f685",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "^3.0",
-                "illuminate/database": "^10.0",
-                "illuminate/support": "^10.0",
-                "php": "^8.1.0"
-            },
-            "require-dev": {
-                "ekino/phpstan-banned-code": "^1.0",
-                "fakerphp/faker": "^1.21.0",
-                "mockery/mockery": "^1.5.1",
-                "nunomaduro/larastan": "^2.6.4",
-                "orchestra/testbench": "^8.0",
-                "phpmd/phpmd": "2.11",
-                "phpstan/phpstan-deprecation-rules": "^1.0.0",
-                "phpunit/phpunit": "^10.0",
-                "richan-fongdasen/laravel-i18n": "^3.0",
-                "spatie/laravel-query-builder": "^5.1.2",
-                "styleci/cli": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "RichanFongdasen\\ApiGenerator\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "RichanFongdasen\\ApiGenerator\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "RichanFongdasen\\ApiGenerator\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "analyse": [
-                    "composer check-syntax",
-                    "composer phpstan-analysis",
-                    "composer phpmd-analysis"
-                ],
-                "check-syntax": [
-                    "! find src -type f -name \"*.php\" -exec php -l {} \\; |  grep -v 'No syntax errors'",
-                    "! find tests -type f -name \"*.php\" -exec php -l {} \\; |  grep -v 'No syntax errors'"
-                ],
-                "phpstan-analysis": [
-                    "@php -d max_memory=-1 vendor/bin/phpstan analyse -c phpstan.neon --no-progress"
-                ],
-                "phpmd-analysis": [
-                    "@php -d max_memory=-1 vendor/bin/phpmd src text codesize,controversial,design,naming,unusedcode,.phpmd.cleancode.xml"
-                ],
-                "cov-text": [
-                    "phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-text"
-                ],
-                "cov-html": [
-                    "phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-html coverage"
-                ],
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "push": [
-                    "composer analyse",
-                    "composer test",
-                    "vendor/bin/styleci",
-                    "BRANCH=`git branch | grep \\*| git branch | grep \\* | cut -d  ' ' -f2`",
-                    "git push origin $BRANCH"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Richan Fongdasen",
-                    "email": "richan.fongdasen@gmail.com"
-                }
-            ],
-            "description": "Easily generates RESTful API endpoints in Laravel",
-            "homepage": "https://github.com/richan-fongdasen/laravel-api-generator",
-            "keywords": [
-                "laravel",
-                "laravel-package"
-            ],
-            "support": {
-                "issues": "https://github.com/richan-fongdasen/laravel-api-generator/issues",
-                "source": "https://github.com/richan-fongdasen/laravel-api-generator"
-            },
-            "time": "2024-03-21T04:40:46+00:00"
         },
         {
             "name": "sebastian/cli-parser",
