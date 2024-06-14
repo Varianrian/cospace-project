@@ -11,6 +11,7 @@ use App\Http\Controllers\WorkspaceCategoriesController;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmailVerificationRequest;
 use App\Http\Controllers\WorkspaceRoomsController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
 Route::get('/detailworkspace', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
 Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
+Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
+Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
 
 
 // Route::get('/aboutus', function () {
