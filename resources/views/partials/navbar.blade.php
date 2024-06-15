@@ -115,11 +115,11 @@
           document.addEventListener('DOMContentLoaded', function () {
             const dropdownButton = document.getElementById('dropdownButton');
             const dropdownMenu = document.getElementById('dropdownMenu');
-        
+
             dropdownButton.addEventListener('click', function () {
               dropdownMenu.classList.toggle('hidden');
             });
-        
+
             document.addEventListener('click', function (event) {
               if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                 dropdownMenu.classList.add('hidden');
@@ -127,7 +127,7 @@
             });
           });
         </script>
-        
+
         @auth
           <form action="{{ route('auth.logout') }}" method="POST" class="flex items-center">
             @csrf
@@ -154,7 +154,7 @@
                 Profile
               </a>
               <a
-                href="{{ route('auth.login') }}"
+                href="{{ route('login') }}"
                 class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 Login
@@ -162,7 +162,7 @@
             </div>
           </div>
         @endauth
-        
+
       </ul>
     </div>
   </div>

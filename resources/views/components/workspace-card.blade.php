@@ -1,15 +1,15 @@
 <div
-  class="rekomendasi h-fit min-h-[371px] w-[200px] rounded-[10px] border border-[#B3B3B3] bg-white px-3 py-4 lg:w-[300px]"
+  class="rekomendasi min-h-[371px] w-[200px] rounded-[10px] border border-[#B3B3B3] bg-white px-3 py-4 lg:w-[300px]"
 >
-  <div class="h-[50%] w-full">
-    <img class="h-full w-full overflow-hidden rounded-t-lg object-cover" src="{{ $image }}" alt=" " />
+  <div class="h-[100px] md:h-[200px] w-full">
+    <img class="overflow-hidden rounded-lg object-cover h-full w-full" src="{{ $image }}" alt={{ $name }} />
   </div>
   <div class="px-2 pt-5">
     <a href="#">
       <h5 class="text-[16px] font-medium tracking-tight text-black">{{ $name }}</h5>
     </a>
     <p class="mb-1 text-xs text-black">{{ $address }}</p>
-    <p class="mb-1 text-xs text-gray-500">{{ $cost }}</p>
+    <p class="mb-1 text-xs text-gray-500">Mulai dari Rp {{ $cost }}/Jam</p>
     <div class="flex items-center">
       @for ($i = 0; $i < 5; $i++)
         <svg
@@ -26,7 +26,7 @@
       @endfor
 
       <p class="ms-1 text-xs text-black">{{ $rating }}</p>
-      <p class="ms-1 text-xs text-black">{{ $ulasan }}</p>
+      <p class="ms-1 text-xs text-black">({{ $ulasan }} ulasan)</p>
     </div>
     <div class="flex justify-end">
       <a
