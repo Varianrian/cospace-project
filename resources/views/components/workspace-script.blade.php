@@ -1,6 +1,7 @@
 <script>
   let workspaces = [];
   let filteredWorkspaces = [];
+  const appUrl = @php echo json_encode(config('app.url')); @endphp;
 
 const workspaceContainer = document.getElementById('workspace-container');
 const workspaceCount = document.getElementById('workspace-count');
@@ -11,7 +12,7 @@ window.addEventListener('load', () => {
     workspaceCount.innerHTML = 'Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">0</span> Coworking Space';
 
 
-  fetch('http://cospace-project.localhost/v1/workspaces?include=categories,rooms')
+    fetch(appUrl + '/v1/workspaces?include=categories,rooms,facilities&sort=-rating_count')
     .then((response) => response.json())
     .then((data) => {
       workspaces = data.data;
@@ -49,19 +50,15 @@ window.addEventListener('load', () => {
 //Sort workspace
 function sortWorkspace() {
   const sort = document.getElementById('sort').value;
-  let sortedWorkspaces = workspaces;
-  if(filteredWorkspaces.length > 0){
-    sortedWorkspaces = filteredWorkspaces;
-  }
+  sortedWorkspaces = filteredWorkspaces;
 
   if (sort === 'lowest-price') {
     sortedWorkspaces.sort((a, b) => a.price - b.price);
   } else if (sort === 'highest-price') {
     sortedWorkspaces.sort((a, b) => b.price - a.price);
   } else if (sort === 'popular') {
-    sortedWorkspaces.sort((a, b) => b.rating_count - a.rating_count);
+    sortedWorkspaces.sort((a, b) => b.rating_count - a.rating_count); // make this descending
   }
-  console.log(sortedWorkspaces);
 
   workspaceContainer.innerHTML = '';
 
@@ -94,10 +91,10 @@ function sortWorkspace() {
 }
 
 //Filter workspace category
-document.addEventListener('click', function (event) {
-  if (event.target.tagName === 'BUTTON') {
-    const category = event.target.value;
-    console.log(category);
+const categoryButtons = document.querySelectorAll('.category-button');
+categoryButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const category = button.value;
 
     if (category === 'all') {
      workspaceContainer.innerHTML = '<div class="text-center w-full">Loading...</div>';
@@ -105,7 +102,7 @@ document.addEventListener('click', function (event) {
      filteredWorkspaces = [];
 
 
-        fetch('http://cospace-project.localhost/v1/workspaces?include=categories,rooms')
+        fetch(appUrl + '/v1/workspaces?include=categories,rooms,facilities&sort=-rating_count')
             .then((response) => response.json())
             .then((data) => {
             workspaces = data.data;
@@ -144,6 +141,8 @@ document.addEventListener('click', function (event) {
       });
 
       workspaceContainer.innerHTML = '';
+      workspaceCount.innerHTML = `Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">${filteredWorkspaces.length}</span> Coworking Space`;
+
       filteredWorkspaces.forEach((workspace) => {
         const workspaceCard = document.createElement('x-workspace-card');
 
@@ -168,7 +167,45 @@ document.addEventListener('click', function (event) {
         `;
         workspaceContainer.appendChild(workspaceCard);
       });
+
+      if (filteredWorkspaces.length === 0) {
+        workspaceContainer.innerHTML = '<div class="text-center w-full mt-12">Tidak ada workspace yang ditemukan</div>';
+      }
+
     }
-  }
+  });
 });
+
+//Filter workspace from form
+function formSubmit(event){
+    event.preventDefault();
+    const form = new FormData(event.target);
+
+    const price = form.get('price');
+    const facilities = form.getAll('facilities');
+    const capacities = form.getAll('capacity');
+
+    filteredWorkspaces = workspaces.filter((workspace) => {
+        let isPrice = true;
+        let isFacilities = true;
+        let isCapacities = true;
+
+        if(price !== null){
+            isPrice = workspace.price <= price;
+        }
+
+        if(facilities.length > 0){
+            isFacilities = facilities.every((facility) => {
+                return workspace.facilities.some((fac) => fac.name === facility);
+            });
+        }
+
+        return isPrice && isFacilities;
+    });
+
+    workspaceContainer.innerHTML = '';
+    workspaceCount.innerHTML = `Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">${filteredWorkspaces.length}</span> Coworking Space`;
+
+    sortWorkspace();
+}
 </script>

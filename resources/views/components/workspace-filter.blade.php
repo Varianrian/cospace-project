@@ -78,200 +78,158 @@
             </div>
           </div>
 
-          <h2 id="accordion-open-heading-2">
-            <button
-              type="button"
-              class="flex w-full items-center justify-between gap-3 py-5 pr-5 font-medium text-black rtl:text-right"
-              data-accordion-target="#accordion-open-body-2"
-              aria-expanded="false"
-              aria-controls="accordion-open-body-2"
-            >
-              <span class="text-black">Harga/Jam</span>
-              <svg
-                data-accordion-icon
-                class="h-3 w-3 shrink-0 rotate-180 text-black"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+          <form id="filter-form" onsubmit="formSubmit(event)">
+            <h2 id="accordion-open-heading-2">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between gap-3 py-5 pr-5 font-medium text-black rtl:text-right"
+                data-accordion-target="#accordion-open-body-2"
+                aria-expanded="false"
+                aria-controls="accordion-open-body-2"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
-            <div class="border-b border-gray-200 px-5 pb-5">
-              <div class="mb-4 flex items-center">
-                <input
-                  id="checkbox-1"
-                  name="checkbox-1"
-                  type="checkbox"
-                  value="15000"
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="checkbox-1" class="ms-2 text-sm font-medium text-black">Range Harga 1</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="checkbox-2"
-                  name="checkbox-2"
-                  type="checkbox"
-                  value="30000"
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="checkbox-2" class="ms-2 text-sm font-medium text-black">Range Harga 2</label>
+                <span class="text-black">Harga/Jam</span>
+                <svg
+                  data-accordion-icon
+                  class="h-3 w-3 shrink-0 rotate-180 text-black"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5 5 1 1 5"
+                  />
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
+              <div class="border-b border-gray-200 px-5 pb-5">
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="checkbox-1"
+                    name="price"
+                    type="radio"
+                    value="15000"
+                    class="price-range h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="checkbox-1" class="ms-2 text-sm font-medium text-black">Rp 0 - Rp 15.000</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="checkbox-2"
+                    name="price"
+                    type="radio"
+                    value="30000"
+                    class="price-range h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="checkbox-2" class="ms-2 text-sm font-medium text-black">Rp 15.001 - Rp 30.000</label>
+                </div>
               </div>
             </div>
-          </div>
-          <h2 id="accordion-open-heading-3">
-            <button
-              type="button"
-              class="flex w-full items-center justify-between gap-3 py-5 pr-5 font-medium text-black rtl:text-right"
-              data-accordion-target="#accordion-open-body-3"
-              aria-expanded="false"
-              aria-controls="accordion-open-body-3"
-            >
-              <span class="text-black">Fasilitas</span>
-              <svg
-                data-accordion-icon
-                class="h-3 w-3 shrink-0 rotate-180 text-black"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+            <h2 id="accordion-open-heading-3">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between gap-3 py-5 pr-5 font-medium text-black rtl:text-right"
+                data-accordion-target="#accordion-open-body-3"
+                aria-expanded="false"
+                aria-controls="accordion-open-body-3"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div id="accordion-open-body-3" class="hidden" aria-labelledby="accordion-open-heading-3">
-            <div class="border-b border-gray-200 px-5 pb-5">
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">Gratis Parkir</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">AC</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">Smart TV</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">Proyektor</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">Speaker</label>
+                <span class="text-black">Fasilitas</span>
+                <svg
+                  data-accordion-icon
+                  class="h-3 w-3 shrink-0 rotate-180 text-black"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5 5 1 1 5"
+                  />
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-open-body-3" class="hidden" aria-labelledby="accordion-open-heading-3">
+              <div class="border-b border-gray-200 px-5 pb-5">
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="facility-2"
+                    type="checkbox"
+                    name="facilities"
+                    value="AC"
+                    class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="facility-2" class="ms-2 text-sm font-medium text-black">AC</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="facility-3"
+                    type="checkbox"
+                    name="facilities"
+                    value="Smart TV"
+                    class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="facility-3" class="ms-2 text-sm font-medium text-black">Smart TV</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="facility-4"
+                    type="checkbox"
+                    name="facilities"
+                    value="Projector"
+                    class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="facility-4" class="ms-2 text-sm font-medium text-black">Projector</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="facility-5"
+                    type="checkbox"
+                    name="facilities"
+                    value="Speaker"
+                    class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="facility-5" class="ms-2 text-sm font-medium text-black">Speaker</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="facility-6"
+                    type="checkbox"
+                    name="facilities"
+                    value="Whiteboard"
+                    class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="facility-6" class="ms-2 text-sm font-medium text-black">Whiteboard</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                  <input
+                    id="facility-7"
+                    type="checkbox"
+                    name="facilities"
+                    value="Printer"
+                    class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                  />
+                  <label for="facility-7" class="ms-2 text-sm font-medium text-black">Printer</label>
+                </div>
               </div>
             </div>
-          </div>
-          <h2 id="accordion-open-heading-4">
-            <button
-              type="button"
-              class="flex w-full items-center justify-between gap-3 py-5 pr-5 font-medium text-black rtl:text-right"
-              data-accordion-target="#accordion-open-body-4"
-              aria-expanded="false"
-              aria-controls="accordion-open-body-4"
-            >
-              <span class="text-black">Kapasitas</span>
-              <svg
-                data-accordion-icon
-                class="h-3 w-3 shrink-0 rotate-180 text-black"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+            <div id="submit" class="flex justify-center">
+              <button
+                type="submit"
+                class="mt-5 w-full rounded-lg bg-[#0021A3] py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div id="accordion-open-body-4" class="hidden" aria-labelledby="accordion-open-heading-4">
-            <div class="border-b border-gray-200 px-5 pb-5">
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">1-5 Orang</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">6-10 Orang</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">11-20 Orang</label>
-              </div>
-              <div class="mb-4 flex items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
-                />
-                <label for="default-checkbox" class="ms-2 text-sm font-medium text-black">21-30 Orang</label>
-              </div>
+                Terapkan Filter
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div class="col-span-4 md:col-span-3">
@@ -302,7 +260,7 @@
               name="EduPlex Coworking Space"
               address="Jl. Ir. H. Juanda No.84, Lebakgede"
               cost="15.000"
-              rating="4.8"
+              rating="3"
               ulasan="(32 ulasan)"
               />
             --}}
@@ -314,4 +272,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-<x-script />
+<x-workspace-script />
