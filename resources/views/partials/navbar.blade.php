@@ -59,7 +59,7 @@
           </div>
         </li>
       </ul>
-      <form class="flex lg:ml-8" role="search" action="workspace" method="GET">
+      <form class="flex lg:ml-8" role="search" action="/workspace" method="GET">
         <div class="relative flex items-center">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3">
             <svg

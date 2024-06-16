@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
     //set loading state
     workspaceContainer.innerHTML = '<div class="text-center w-full">Loading...</div>';
     workspaceCount.innerHTML = 'Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">0</span> Coworking Space';
-    
+
     let endpoint = appUrl + '/v1/workspaces?include=categories,rooms,facilities&sort=-rating_count';
     if (search)
      endpoint = endpoint + `&search=${search}`;
@@ -39,6 +39,7 @@ window.addEventListener('load', () => {
 
         workspaceCard.innerHTML = `
           <x-workspace-card
+            id="${workspace.id}"
             image="${workspace.image}"
             name="${workspace.name}"
             address="${workspace.address}"
@@ -83,6 +84,7 @@ function sortWorkspace() {
 
     workspaceCard.innerHTML = `
       <x-workspace-card
+        id="${workspace.id}"
         image="${workspace.image}"
         name="${workspace.name}"
         address="${workspace.address}"
@@ -129,6 +131,7 @@ categoryButtons.forEach((button) => {
 
                 workspaceCard.innerHTML = `
                 <x-workspace-card
+                    id="${workspace.id}"
                     image="${workspace.image}"
                     name="${workspace.name}"
                     address="${workspace.address}"
@@ -162,6 +165,7 @@ categoryButtons.forEach((button) => {
 
         workspaceCard.innerHTML = `
           <x-workspace-card
+            id="${workspace.id}"
             image="${workspace.image}"
             name="${workspace.name}"
             address="${workspace.address}"

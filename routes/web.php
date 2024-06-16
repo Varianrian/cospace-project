@@ -26,7 +26,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
-Route::get('/detailworkspace', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
+Route::get('/detail-workspace/{workspace}', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
 Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
