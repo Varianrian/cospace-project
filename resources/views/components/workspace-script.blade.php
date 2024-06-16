@@ -21,6 +21,7 @@ window.addEventListener('load', () => {
     .then((response) => response.json())
     .then((data) => {
       workspaces = data.data;
+      filteredWorkspaces = workspaces;
       workspaceContainer.innerHTML = '';
       workspaceCount.innerHTML = `Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">${data.data.length}</span> Coworking Space`;
       data.data.forEach((workspace) => {
@@ -56,6 +57,7 @@ window.addEventListener('load', () => {
 //Sort workspace
 function sortWorkspace() {
   const sort = document.getElementById('sort').value;
+  console.log(filteredWorkspaces);
   sortedWorkspaces = filteredWorkspaces;
 
   if (sort === 'lowest-price') {
@@ -106,13 +108,12 @@ categoryButtons.forEach((button) => {
     if (category === 'all') {
      workspaceContainer.innerHTML = '<div class="text-center w-full">Loading...</div>';
      workspaceCount.innerHTML = 'Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">0</span> Coworking Space';
-     filteredWorkspaces = [];
-
 
         fetch(appUrl + '/v1/workspaces?include=categories,rooms,facilities&sort=-rating_count')
             .then((response) => response.json())
             .then((data) => {
             workspaces = data.data;
+            filteredWorkspaces = workspaces;
             workspaceContainer.innerHTML = '';
             workspaceCount.innerHTML = `Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">${data.data.length}</span> Coworking Space`;
             data.data.forEach((workspace) => {

@@ -1,5 +1,5 @@
 <div class="my-2 flex h-fit justify-between gap-4 rounded-[10px] p-6 shadow-lg">
-  <div class="h-full w-1/3">
+  <div class="h-full w-1/3" id="room-image-{{ $room->id }}" onclick="showDetailImage({{ $room->id }})">
     <figure class="relative h-full w-full">
       {{-- <img src="{{ $room->mediaUrls[0] }}" class="" alt="..." /> --}}
       <div class="h-[250px] w-full">
@@ -13,6 +13,28 @@
         <h2 class="z-30 text-[40px] font-bold text-white">+{{ count($room->mediaUrls) }}</h2>
       </figcaption>
     </figure>
+  </div>
+  <div
+    id="detail-image-container-{{ $room->id }}"
+    class="fixed left-0 top-0 z-50 hidden h-screen w-screen bg-black bg-opacity-50"
+  >
+    <div class="flex h-full w-full items-center justify-center">
+      <div class="relative max-h-[80%] w-[80%] overflow-y-scroll rounded-[10px] bg-white p-5">
+        <div class="fixed absolute right-5 top-5">
+          <button
+            id="close-detail-image-{{ $room->id }}"
+            class="text-[24px] font-bold text-[#666666] focus:outline-none"
+          >
+            &times;
+          </button>
+        </div>
+        @foreach ($room->mediaUrls as $mediaUrl)
+          <div class="mx-auto h-[80%] w-[50%]">
+            <img id="detail-image" class="object-fit h-full w-full" src="{{ $mediaUrl }}" alt="{{ $room->name }}" />
+          </div>
+        @endforeach
+      </div>
+    </div>
   </div>
   <div class="flex w-2/3 justify-between rounded-[10px] border border-[#B3B3B3] px-10 py-5">
     <div class="leading-10">
@@ -49,3 +71,19 @@
     </div>
   </div>
 </div>
+<script>
+  function showDetailImage(roomId) {
+    const detailImageContainer = document.getElementById(`detail-image-container-${roomId}`);
+    detailImageContainer.classList.remove('hidden');
+    const closeDetailImage = document.getElementById(`close-detail-image-${roomId}`);
+    closeDetailImage.addEventListener('click', () => {
+      detailImageContainer.classList.add('hidden');
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        detailImageContainer.classList.add('hidden');
+      }
+    });
+  }
+</script>
