@@ -1,6 +1,6 @@
 <div class="items-center">
   <div class="px-40 pt-3">
-    <div class="grid grid-cols-4 gap-6">
+    {{-- <div class="grid grid-cols-4 gap-6">
       <div class="col-span-1">
         <label for="datepicker" class="mb-2 block text-sm font-medium text-gray-900">Date</label>
         <div class="relative w-full">
@@ -30,7 +30,7 @@
         <form class="mx-auto grid grid-cols-2 gap-6">
           <div>
             <label for="start-time" class="mb-2 block text-sm font-medium text-gray-900">Check In</label>
-            <div class="">
+            <div class=""> --}}
               {{--
                 <div class="flex items-center pe-3.5 pointer-events-none">
                 <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
                 </svg>
                 </div>
               --}}
-              <input
+              {{-- <input
                 type="time"
                 id="start-time"
                 class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-left text-sm leading-none text-gray-900 focus:border-blue-500 focus:ring-blue-500"
@@ -51,7 +51,7 @@
           </div>
           <div>
             <label for="end-time" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Check Out</label>
-            <div class="relative">
+            <div class="relative"> --}}
               {{--
                 <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
                 <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@
                 </svg>
                 </div>
               --}}
-              <input
+              {{-- <input
                 type="time"
                 id="end-time"
                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm leading-none text-gray-900 focus:border-blue-500 focus:ring-blue-500"
@@ -76,13 +76,13 @@
         <label for="guests" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Guests</label>
         <div class="flex grid-cols-4">
           <div class="relative col-span-3 w-full">
-            <div class="pointer-events-none absolute start-0 items-center">
+            <div class="pointer-events-none absolute start-0 items-center"> --}}
               {{--
                 <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                 </svg>
               --}}
-              <img src="{{ asset('assets/images/user-logo.png') }}" class="h-[40px] w-[40px]" alt="" />
+              {{-- <img src="{{ asset('assets/images/user-logo.png') }}" class="h-[40px] w-[40px]" alt="" />
             </div>
             <input
               type="text"
@@ -114,17 +114,17 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
   </div>
-  <div class="mt-10 px-14">
-    <div class="grid grid-cols-4 gap-6">
+  <div class="mt-10 xl:px-14 lg:px-5">
+    <div class="grid grid-cols-4 xl:gap-6 lg:gap-2">
       <div class="col-span-1 hidden md:block">
         <h2 class="font-bold">Filter</h2>
         <div id="accordion-open" data-accordion="open" data-active-classes="bg-white">
           <h2 id="accordion-open-heading-1">
             <button
               type="button"
-              class="flex w-full items-center justify-between py-5 pr-5 font-medium text-black rtl:text-right"
+              class="flex w-full items-center justify-between py-5 xl:pr-5 lg:pr-0 font-medium text-black rtl:text-right"
               data-accordion-target="#accordion-open-body-1"
               aria-expanded="true"
               aria-controls="accordion-open-body-1"
@@ -149,7 +149,7 @@
             </button>
           </h2>
           <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-            <div class="border-b border-gray-200 px-5 pb-5">
+            <div class="border-b border-gray-200 xl:px-5 pb-5">
               <button
                 type="button"
                 class="mb-2 me-2 rounded-[4px] border border-[#079D75] px-2 py-1.5 text-center text-xs font-medium text-black focus:outline-1 focus:ring-2 focus:ring-green-300"
@@ -418,7 +418,7 @@
           </p>
         </div>
         <div>
-          <div class="flex flex-wrap justify-start gap-6 px-1 pt-5">
+          <div class="flex flex-wrap justify-start xl:gap-6 lg:gap-1 xl:px-1 pt-5">
             <x-workspace-card
               image="assets/images/rekom1.png"
               name="EduPlex Coworking Space"
