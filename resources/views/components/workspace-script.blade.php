@@ -2,6 +2,8 @@
   let workspaces = [];
   let filteredWorkspaces = [];
   const appUrl = @php echo json_encode(config('app.url')); @endphp;
+  const queryParam = new URLSearchParams(window.location.search);
+  const search = queryParam.get('search');
 
 const workspaceContainer = document.getElementById('workspace-container');
 const workspaceCount = document.getElementById('workspace-count');
@@ -10,9 +12,12 @@ window.addEventListener('load', () => {
     //set loading state
     workspaceContainer.innerHTML = '<div class="text-center w-full">Loading...</div>';
     workspaceCount.innerHTML = 'Ditemukan <span class="text-[#0021A3]" id="workspace-count-number">0</span> Coworking Space';
+    
+    let endpoint = appUrl + '/v1/workspaces?include=categories,rooms,facilities&sort=-rating_count';
+    if (search)
+     endpoint = endpoint + `&search=${search}`;
 
-
-    fetch(appUrl + '/v1/workspaces?include=categories,rooms,facilities&sort=-rating_count')
+    fetch(endpoint)
     .then((response) => response.json())
     .then((data) => {
       workspaces = data.data;

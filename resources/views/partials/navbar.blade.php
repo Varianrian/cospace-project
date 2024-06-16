@@ -59,7 +59,7 @@
           </div>
         </li>
       </ul>
-      <form class="flex lg:ml-8" role="search">
+      <form class="flex lg:ml-8" role="search" action="workspace" method="GET">
         <div class="relative flex items-center">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3">
             <svg
@@ -81,6 +81,7 @@
           <input
             class="w-[310px] rounded-[10px] border-[0.5px] border-[#666666] bg-white py-1 pl-10 pr-4 text-[14px] font-light"
             type="search"
+            name="search"
             placeholder="Temukan coworking space..."
             aria-label="Search"
           />
