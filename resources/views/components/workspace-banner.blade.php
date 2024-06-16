@@ -1,4 +1,4 @@
-<div class="px-40 py-12">
+<div class="px-40 py-8">
   <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative overflow-hidden rounded-[5px] rounded-lg lg:h-96">

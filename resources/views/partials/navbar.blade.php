@@ -104,24 +104,76 @@
         </div>
       </form>
       <ul class="nav-item flex items-center lg:ml-8">
-        @auth
-        <form action="{{ route('auth.logout') }}" method="POST" class="flex items-center">
-          @csrf
-          <button
-            type="submit"
-            class="btn rounded-xl bg-[#0021A3] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
-          >
-            Logout
-          </button>
-        </form>
+        {{-- @auth
+          <form action="{{ route('auth.logout') }}" method="POST" class="flex items-center">
+            @csrf
+            <button
+              type="submit"
+              class="btn rounded-xl bg-[#0021A3] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+            >
+              Logout
+            </button>
+          </form>
         @else
-        <a
-          href="{{ route('login') }}"
-          class="btn mr-[60px] rounded-[10px] bg-[#0021A3] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
-        >
-          Profil
-        </a>
+          <a
+            href="{{ route('login') }}"
+            class="btn mr-[60px] rounded-[10px] bg-[#0021A3] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+          >
+            Profil
+          </a>
+        @endauth --}}
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const dropdownButton = document.getElementById('dropdownButton');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+        
+            dropdownButton.addEventListener('click', function () {
+              dropdownMenu.classList.toggle('hidden');
+            });
+        
+            document.addEventListener('click', function (event) {
+              if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+              }
+            });
+          });
+        </script>
+        
+        @auth
+          <form action="{{ route('auth.logout') }}" method="POST" class="flex items-center">
+            @csrf
+            <button
+              type="submit"
+              class="btn rounded-xl bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+            >
+              Logout
+            </button>
+          </form>
+        @else
+          <div class="relative">
+            <button
+              id="dropdownButton"
+              class="btn mr-[60px] rounded-[10px] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+            >
+              Profil
+            </button>
+            <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+              <a
+                href="{{ route('profile') }}"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Profile
+              </a>
+              <a
+                href="{{ route('auth.login') }}"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              >
+                Login
+              </a>
+            </div>
+          </div>
         @endauth
+        
       </ul>
     </div>
   </div>
