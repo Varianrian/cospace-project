@@ -1,15 +1,15 @@
-<div class="mx-32 mb-20 mt-20 flex h-[550px] w-[1178px] rounded-lg bg-[#211951]">
-  <div class="grid grid-cols-2">
-    <div class="faq-kiri pl-3 pt-16">
-      <h5 class="ml-12 text-left text-[26px] font-semibold text-white">Pertanyaan Sering Diajukan</h5>
-      <p class="ml-12 text-left text-[16px] font-light text-white">
+<div class="py-20 xl:px-32 lg:px-20">
+  <div class="grid grid-cols-1 lg:grid-cols-2 rounded-lg xl:p-16 lg:p-10 p-5 bg-[#211951]">
+    <div class="faq-kiri mb-8 lg:mb-0 lg:mr-6">
+      <h5 class="text-left xl:text-[26px] lg:text-[26px] text-[22px] font-semibold text-white">Pertanyaan Sering Diajukan</h5>
+      <p class="text-left text-[16px] font-light lg:mt-5 text-white">
         Temukan jawaban yang cepat untuk
         <br />
         pertanyaan umum mengenai layanan kami.
       </p>
     </div>
-    <div id="accordion-nested-parent" data-accordion="collapse" class="pt-16">
-      <div class="w-[566px] rounded-lg bg-white">
+    <div id="accordion-nested-parent" data-accordion="collapse" class="flex flex-col items-center lg:items-start">
+      <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-1">
             <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="my-7 w-[566px] rounded-lg bg-white">
+      <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-2">
             <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
@@ -135,7 +135,7 @@
           </div>
         </div>
       </div>
-      <div class="my-7 w-[566px] rounded-lg bg-white">
+      <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-3">
             <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
@@ -198,7 +198,7 @@
           </div>
         </div>
       </div>
-      <div class="my-7 w-[566px] rounded-lg bg-white">
+      <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-4">
             <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">

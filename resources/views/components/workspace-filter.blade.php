@@ -7,7 +7,7 @@
           <h2 id="accordion-open-heading-1">
             <button
               type="button"
-              class="flex w-full items-center justify-between py-5 pr-5 font-medium text-black rtl:text-right"
+              class="flex w-full items-center justify-between py-5 xl:pr-5 lg:pr-0 font-medium text-black rtl:text-right"
               data-accordion-target="#accordion-open-body-1"
               aria-expanded="true"
               aria-controls="accordion-open-body-1"
@@ -32,7 +32,7 @@
             </button>
           </h2>
           <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-            <div class="border-b border-gray-200 px-5 pb-5">
+            <div class="border-b border-gray-200 xl:px-5 pb-5">
               <button
                 value="all"
                 type="button"

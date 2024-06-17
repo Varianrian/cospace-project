@@ -1,20 +1,30 @@
 <nav class="bg-white">
-  <div class="container ml-[60px] flex items-center justify-between py-5">
+  <div class="container lg:pl-[60px] px-5 flex items-center justify-between py-5">
     <a class="font-poppins text-left text-xl font-bold" href="/">
       Co
       <span class="text-indigo-700">Space</span>
     </a>
-    <button class="focus:outline-none lg:hidden" aria-label="Toggle navigation">
+    <button
+      class="focus:outline-none lg:hidden"
+      aria-label="Toggle navigation"
+      id="navbar-toggle"
+    >
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
       </svg>
     </button>
-    <div class="hidden lg:flex lg:w-auto lg:items-center" id="navbarSupportedContent">
-      <ul class="flex list-none flex-col lg:ml-auto lg:flex-row">
+    <div
+      class="hidden lg:flex lg:w-auto lg:items-center"
+      id="navbarSupportedContent"
+    >
+      <ul
+        class="flex list-none flex-col lg:ml-auto lg:flex-row"
+        id="nav-items"
+      >
         <li class="nav-item">
-          <a href="{{ route('home') }}" class="text-[16px] font-normal text-[#079D75]">Home</a>
+          <a href="{{ route('home') }}" class="text-[16px] font-normal text-[#079D75] ">Home</a>
         </li>
-        <li class="nav-item dropdown ml-8">
+        <li class="nav-item dropdown lg:ml-8">
           <a
             id="dropdownHoverButton"
             data-dropdown-toggle="dropdownHover"
@@ -168,3 +178,13 @@
     </div>
   </div>
 </nav>
+
+<script>
+  document.getElementById('navbar-toggle').addEventListener('click', function () {
+    const navItems = document.getElementById('navbarSupportedContent');
+    navItems.classList.toggle('hidden');
+    navItems.classList.toggle('flex');
+    navItems.classList.toggle('flex-col');
+    navItems.classList.toggle('lg:flex-row');
+  });
+</script>

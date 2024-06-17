@@ -19,6 +19,7 @@
       @endforeach
     </div>
   </div>
+</div>
   <div class="flex justify-between px-28">
     <div class="">
       <h2 class="text-[24px] font-semibold text-[#0021A3]">{{ $workspace->name }}</h2>
