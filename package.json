@@ -8,6 +8,7 @@
     },
     "devDependencies": {
         "axios": "^1.6.4",
+        "daisyui": "^4.12.2",
         "flowbite": "^2.3.0",
         "laravel-vite-plugin": "^1.0.0",
         "prettier": "^3.2.5",

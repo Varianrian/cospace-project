@@ -58,7 +58,7 @@
     @endforeach
   @else
     <div class="flex h-[calc(100%-1rem)] w-full items-center justify-center">
-      <h1 class="text-[24px] font-bold text-[#112211]">Belum ada reservasi</h1>
+      <h1 class="text-[24px] font-bold text-[#112211]">Belum ada reservasi yang akan datang</h1>
     </div>
   @endif
 </div>

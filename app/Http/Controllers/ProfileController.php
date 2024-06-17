@@ -15,7 +15,14 @@ class ProfileController extends Controller
 
     public function profileReservation()
     {
-        return view('pages.profileReservation');
+        $user = auth()->user();
+        $payment = $user->payment()
+            ->where('status', Payment::PAYMENT_STATUS_SUCCESS)
+            ->where('check_in', '<', now())
+            ->get();
+        return view('pages.profileReservation', [
+            'payments' => $payment
+        ]);
     }
     public function profileBooking()
     {
