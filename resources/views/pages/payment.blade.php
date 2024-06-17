@@ -11,7 +11,9 @@
               <span class="font-medium text-emerald-600">Rp {{ number_format($room->price, 0, ',', '.') }}/Jam</span>
             </header>
             <div class="mt-4 flex items-center gap-5 rounded-lg border border-stone-500 p-4">
-              <img alt="EduPlex Coworking Space" class="h-16 w-16 rounded-lg" src="{{ $workspace->mediaUrls[0] }}" />
+              <div class="h-16 w-16 overflow-hidden rounded-lg">
+                <img alt="EduPlex Coworking Space" class="h-full w-full" src="{{ $workspace->mediaUrls[0] }}" />
+              </div>
               <div>
                 <h3 class="text-xl font-medium text-black">{{ $workspace->name }}</h3>
                 <p class="mt-2 flex items-center gap-0.5 text-sm text-stone-500">
@@ -79,7 +81,11 @@
         <aside class="w-1/3">
           <div class="rounded-md border-2 border-solid border-zinc-400 bg-white p-6 shadow-sm">
             <div class="flex">
-              <img alt="EduPlex Coworking Space" class="h-32 w-32 rounded-lg" src="{{ $room->mediaUrls[0] }}" />
+              <img
+                alt="EduPlex Coworking Space"
+                class="h-32 w-32 rounded-lg object-cover"
+                src="{{ $room->mediaUrls[0] }}"
+              />
               <div class="ml-5 flex flex-1 flex-col justify-center">
                 <p class="font-medium text-stone-500">{{ $workspace->name }}</p>
                 <h3 class="text-xl font-semibold text-black">{{ $room->name }}</h3>
