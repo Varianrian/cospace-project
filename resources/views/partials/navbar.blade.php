@@ -100,29 +100,57 @@
           });
         </script>
 
-        @auth
+        {{--
+          @auth
           <form action="{{ route('auth.logout') }}" method="POST" class="flex items-center">
-            @csrf
-            <button
-              type="submit"
-              class="btn rounded-xl bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
-            >
-              Logout
-            </button>
+          @csrf
+          <button
+          type="submit"
+          class="btn rounded-xl bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+          >
+          Logout
+          </button>
           </form>
-        @else
+          @else
+          <div class="relative">
+          <button
+          id="dropdownButton"
+          class="btn mr-[60px] rounded-[10px] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+          >
+          Profil
+          </button>
+          <div id="dropdownMenu" class="absolute right-0 z-50 mt-2 hidden w-48 rounded-md bg-white shadow-lg">
+          <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+          <a href="{{ route('login') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+          </div>
+          </div>
+          @endauth
+        --}}
+        @auth
           <div class="relative">
             <button
               id="dropdownButton"
               class="btn mr-[60px] rounded-[10px] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
             >
-              Profil
+              Menu
             </button>
             <div id="dropdownMenu" class="absolute right-0 z-50 mt-2 hidden w-48 rounded-md bg-white shadow-lg">
               <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
-              <a href="{{ route('login') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+              <form action="{{ route('auth.logout') }}" method="POST" class="w-full">
+                @csrf
+                <button type="submit" class="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200">
+                  Logout
+                </button>
+              </form>
             </div>
           </div>
+        @else
+          <a
+            href="{{ route('login') }}"
+            class="btn mr-[60px] rounded-[10px] bg-[#0021A3] px-4 py-2 text-[16px] font-light text-white hover:bg-[#0021A3] focus:outline-none focus:ring-2 focus:ring-[#0021A3]"
+          >
+            Login
+          </a>
         @endauth
       </ul>
     </div>
