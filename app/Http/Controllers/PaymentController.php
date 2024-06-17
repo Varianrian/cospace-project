@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentChargeRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -24,22 +26,8 @@ class PaymentController extends Controller
 
     use MidtransPaymentTrait;
 
-    public function charge(Request $request): JsonResponse
+    public function charge(PaymentChargeRequest $request): JsonResponse
     {
-        $request->validate([
-            'workspace_room_id' => 'required|exists:workspace_rooms,id',
-            'user_id' => 'required|exists:users,id'
-        ]);
-
-        /** @var User $user */
-        // $user = auth()->user();
-
-        // if ($user === null) {
-        //     return new JsonResponse([
-        //         'status' => 'error',
-        //         'message' => 'User not found'
-        //     ], 404);
-        // }
         $user = User::find($request->user_id);
 
         /** @var WorkspaceRoom $workspaceRoom */
@@ -75,6 +63,8 @@ class PaymentController extends Controller
         $responseBody = json_decode($response->getBody()->getContents());
         $responseBody->order_id = $payloads['transaction_details']['order_id'];
 
+        $duration = Carbon::parse($request->end_time)->diffInMinutes(Carbon::parse($request->start_time));
+
         try {
             Payment::create([
                 'id' => $payloads['transaction_details']['order_id'],
@@ -82,7 +72,11 @@ class PaymentController extends Controller
                 'workspace_room_id' => $workspaceRoom->id,
                 'token' => $responseBody->token,
                 'total_amount' => $workspaceRoom->price,
-                'status' => Payment::PAYMENT_STATUS_STARTED
+                'status' => Payment::PAYMENT_STATUS_STARTED,
+                'check_in' => Carbon::parse($request->date . ' ' . $request->start_time),
+                'check_out' => Carbon::parse($request->date . ' ' . $request->end_time),
+                'booking_date' => Carbon::parse($request->date),
+                'duration' => $duration,
             ]);
 
             return new JsonResponse([

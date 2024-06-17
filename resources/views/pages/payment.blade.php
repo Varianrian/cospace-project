@@ -140,7 +140,11 @@
               >
                 Bayar
               </button>
-              <a href="#" class="flex w-44 justify-center rounded-xl bg-zinc-400 py-3 text-sm font-medium text-white hidden" id="view-ticket">
+              <a
+                href="#"
+                class="flex hidden w-44 justify-center rounded-xl bg-zinc-400 py-3 text-sm font-medium text-white"
+                id="view-ticket"
+              >
                 Lihat Tiket
               </a>
             </div>
@@ -209,6 +213,12 @@
         showToast('An error occurred', 'error');
         return;
       }
+      if (result.errors) {
+        showToast(result.message, 'error');
+        enableButton();
+        return;
+      }
+
       snap.pay(result.data.token, {
         onSuccess: function (result) {
           showToast('Payment successful', 'success');
