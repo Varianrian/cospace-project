@@ -92,4 +92,16 @@ class Payment extends Model
         return $this->id;
     }
 
+    /**
+     * Map Midtrans Payment Status to Payment Status
+     */
+    public static function getPaymentStatus(string $transactionStatus): string
+    {
+        return match ($transactionStatus) {
+            self::MIDTRANS_STATUS_SETTLEMENT, self::MIDTRANS_STATUS_CAPTURE => self::PAYMENT_STATUS_SUCCESS,
+            self::MIDTRANS_STATUS_DENY, self::MIDTRANS_STATUS_CANCEL, self::MIDTRANS_STATUS_EXPIRE => self::PAYMENT_STATUS_FAILED,
+            default => self::PAYMENT_STATUS_PENDING,
+        };
+    }
+
 }

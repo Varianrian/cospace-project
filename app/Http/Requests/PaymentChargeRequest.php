@@ -49,7 +49,7 @@ class PaymentChargeRequest extends FormRequest
         $end_time = Carbon::parse($this->date . ' ' . $this->end_time);
 
         $bookings = Payment::where('workspace_room_id', $this->workspace_room_id)
-            // ->where('status', Payment::PAYMENT_STATUS_SUCCESS)
+            ->where('status', Payment::PAYMENT_STATUS_SUCCESS)
             ->where('booking_date', $date)
             ->where(function ($query) use ($start_time, $end_time) {
                 $query->where(function ($query) use ($start_time, $end_time) {

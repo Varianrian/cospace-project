@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmailVerificationRequest;
 use App\Http\Controllers\WorkspaceRoomsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MidtransNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,4 +83,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)->only(['index', 'show']);
     Route::apiResource('workspaces', WorkspaceListController::class)->only(['index', 'show']);
     Route::apiResource('workspace_rooms', WorkspaceRoomsController::class)->only(['index', 'show']);
+
+    Route::post('/payment/notification', [MidtransNotificationController::class, 'notification'])->name('payment.notification');
 });
