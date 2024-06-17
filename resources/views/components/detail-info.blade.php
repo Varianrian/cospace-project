@@ -1,5 +1,6 @@
 <div>
-  <div class="grid grid-cols-2 gap-2 px-32 py-7">
+  <div class="flex justify-center items-center">
+  <div class="grid xl:grid-cols-2 lg:xl:grid-cols-2 gap-2 xl:pl-32 py-7">
     <img class="w-full" src="assets/images/eduplex1.png" alt="" />
     <div class="flex flex-wrap gap-2">
       <img src="assets/images/eduplex2.png" alt="" />
@@ -8,6 +9,7 @@
       <img src="assets/images/eduplex5.png" alt="" />
     </div>
   </div>
+</div>
   <div class="flex justify-between px-28">
     <div class="">
       <h2 class="text-[24px] font-semibold text-[#0021A3]">EduPlex Coworking Space</h2>
