@@ -33,12 +33,6 @@ Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
 Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
 
-
-// Route::get('/aboutus', function () {
-//     return view('pages.aboutus', [
-//     ]);
-// });
-
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login.view');
     Route::post('login', [AuthController::class, 'authenticate'])->name('login');

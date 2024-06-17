@@ -104,4 +104,12 @@ class Payment extends Model
         };
     }
 
+    /**
+     * Relationship with Workspace Room
+     */
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(WorkspaceRoom::class, 'workspace_room_id');
+    }
+
 }
