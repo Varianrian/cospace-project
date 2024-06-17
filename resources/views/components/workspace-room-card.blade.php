@@ -62,7 +62,7 @@
       </div>
       <div class="flex justify-end">
         <a
-          href="#"
+          href="/payment/{{ $room->id }}"
           class="items-center rounded-[15px] rounded-lg bg-[#0F6FFF] px-7 py-4 text-center text-[14px] font-light text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           Pesan Sekarang
