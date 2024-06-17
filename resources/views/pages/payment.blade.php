@@ -68,38 +68,13 @@
                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm leading-none text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                     min="09:00"
                     max="18:00"
-                    value="18:00"
+                    value="10:00"
                     required
                   />
                 </div>
               </div>
             </div>
           </article>
-          <section class="mt-9 rounded-md border-2 border-solid border-zinc-400 bg-white p-6">
-            <header class="py-1.5 text-2xl font-semibold text-black">Identitas Pemesan</header>
-            <div class="mt-4">
-              <div>
-                <label class="block text-lg text-stone-500">Nama</label>
-                <input
-                  type="text"
-                  id="name"
-                  class="w-full rounded border border-black p-3"
-                  placeholder="John Doe"
-                  value="{{ auth()->user()->name }}"
-                />
-              </div>
-              <div class="mt-4">
-                <label class="block text-lg text-stone-500">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  class="w-full rounded border border-black p-3"
-                  placeholder="John_Doe@gmail.com"
-                  value="{{ auth()->user()->email }}"
-                />
-              </div>
-            </div>
-          </section>
         </div>
         <aside class="w-1/3">
           <div class="rounded-md border-2 border-solid border-zinc-400 bg-white p-6 shadow-sm">
@@ -119,17 +94,26 @@
               <p class="font-semibold">Detail</p>
               <div class="mt-2.5 flex justify-between">
                 <span>Harga</span>
-                <span class="font-medium">Rp {{ number_format($room->price, 0, ',', '.') }}</span>
+                <span class="font-medium">
+                  Rp
+                  <span id="price">{{ number_format($room->price, 0, ',', '.') }}</span>
+                </span>
               </div>
               <div class="mt-2.5 flex justify-between">
                 <span>Pajak (10%)</span>
-                <span class="font-medium">Rp {{ number_format($room->price * 0.1, 0, ',', '.') }}</span>
+                <span class="font-medium">
+                  Rp
+                  <span id="tax">{{ number_format($room->price * 0.1, 0, ',', '.') }}</span>
+                </span>
               </div>
             </div>
             <div class="mt-4 h-px bg-neutral-900"></div>
             <div class="mt-4 flex justify-between text-base text-black">
               <span>Total</span>
-              <span class="font-medium">Rp {{ number_format($room->price * 1.1, 0, ',', '.') }}</span>
+              <span class="font-medium">
+                Rp
+                <span id="total">{{ number_format($room->price * 1.1, 0, ',', '.') }}</span>
+              </span>
             </div>
             <div class="mt-12 flex w-full flex-col items-center justify-center" id="button-container">
               <button
@@ -159,6 +143,64 @@
     const payButton = document.getElementById('pay-button');
     const viewTicketButton = document.getElementById('view-ticket');
 
+    document.getElementById('start-time').addEventListener('change', function (event) {
+      const startTime = event.target.value;
+      const endTime = document.getElementById('end-time').value;
+      const price = document.getElementById('price');
+      const tax = document.getElementById('tax');
+      const total = document.getElementById('total');
+
+      if (startTime >= endTime) {
+        showToast('Start time must be less than end time', 'error');
+        return;
+      }
+
+      if (startTime < '09:00') {
+        showToast('Start time must be greater than or equal to 09:00', 'error');
+        return;
+      }
+
+      const start = new Date(`01/01/2021 ${startTime}`);
+      const end = new Date(`01/01/2021 ${endTime}`);
+
+      const diff = end - start;
+      const hours = Math.ceil(diff / 1000 / 60 / 60);
+
+      console.log(hours, {{ $room->price }}), hours * {{ $room->price }};
+      price.textContent = new Intl.NumberFormat('id-ID').format(hours * {{ $room->price }});
+      tax.textContent = new Intl.NumberFormat('id-ID').format(hours * {{ $room->price }} * 0.1);
+      total.textContent = new Intl.NumberFormat('id-ID').format(hours * {{ $room->price }} * 1.1);
+    });
+
+    document.getElementById('end-time').addEventListener('change', function (event) {
+      const endTime = event.target.value;
+      const startTime = document.getElementById('start-time').value;
+      const price = document.getElementById('price');
+      const tax = document.getElementById('tax');
+      const total = document.getElementById('total');
+
+      if (startTime >= endTime) {
+        showToast('Start time must be less than end time', 'error');
+        return;
+      }
+
+      if (endTime > '18:00') {
+        showToast('End time must be less than or equal to 18:00', 'error');
+        return;
+      }
+
+      const start = new Date(`01/01/2021 ${startTime}`);
+      const end = new Date(`01/01/2021 ${endTime}`);
+
+      const diff = end - start;
+      const hours = Math.ceil(diff / 1000 / 60 / 60);
+
+      console.log(hours, {{ $room->price }}), hours * {{ $room->price }};
+      price.textContent = new Intl.NumberFormat('id-ID').format(hours * {{ $room->price }});
+      tax.textContent = new Intl.NumberFormat('id-ID').format(hours * {{ $room->price }} * 0.1);
+      total.textContent = new Intl.NumberFormat('id-ID').format(hours * {{ $room->price }} * 1.1);
+    });
+
     document.getElementById('paymentForm').addEventListener('submit', async function (event) {
       event.preventDefault();
 
@@ -169,12 +211,10 @@
         date: document.getElementById('date').value,
         start_time: document.getElementById('start-time').value,
         end_time: document.getElementById('end-time').value,
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
       };
 
       //validate data
-      if (!data.date || !data.start_time || !data.end_time || !data.name || !data.email) {
+      if (!data.date || !data.start_time || !data.end_time) {
         showToast('Please fill all fields', 'error');
         return;
       }
