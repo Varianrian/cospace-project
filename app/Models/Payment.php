@@ -112,4 +112,12 @@ class Payment extends Model
         return $this->belongsTo(WorkspaceRoom::class, 'workspace_room_id');
     }
 
+    public function reviewed(string $userId, string $roomId): bool
+    {
+        $review = Review::where('user_id', $userId)
+            ->where('workspace_room_id', $roomId)
+            ->exists();
+        return $review;
+    }
+
 }

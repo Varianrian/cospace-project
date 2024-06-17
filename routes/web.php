@@ -13,6 +13,7 @@ use App\Http\Requests\EmailVerificationRequest;
 use App\Http\Controllers\WorkspaceRoomsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MidtransNotificationController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,12 @@ use App\Http\Controllers\MidtransNotificationController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
 Route::get('/detail-workspace/{workspace}', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
-Route::get('/payment/{workspaceRoom}', [PaymentController::class, 'payment'])->name('payment');
-Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
-Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
+Route::middleware('auth')->group(function () {
+    Route::get('/payment/{workspaceRoom}', [PaymentController::class, 'payment'])->name('payment');
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
+    Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
+});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login.view');
@@ -79,4 +82,5 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('workspace_rooms', WorkspaceRoomsController::class)->only(['index', 'show']);
 
     Route::post('/payment/notification', [MidtransNotificationController::class, 'notification'])->name('payment.notification');
+    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 });

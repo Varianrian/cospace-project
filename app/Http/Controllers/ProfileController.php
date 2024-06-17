@@ -20,6 +20,9 @@ class ProfileController extends Controller
             ->where('status', Payment::PAYMENT_STATUS_SUCCESS)
             ->where('check_in', '<', now())
             ->get();
+        $reviews = $user->reviews()
+            ->get();
+        // dd($reviews);
         return view('pages.profileReservation', [
             'payments' => $payment
         ]);

@@ -61,3 +61,52 @@
     <h1 class="text-[24px] font-bold text-[#112211]">Belum ada reservasi yang selesai</h1>
   </div>
 @endif
+
+<script>
+  const appUrl = '{{ config('app.url') }}';
+
+  console.log(appUrl);
+
+  function submitForm(e, roomId) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const rating = formData.get('rating-2');
+    const review = formData.get('review');
+    const workspaceRoomId = roomId;
+    const userId = {{ auth()->user()->id }};
+
+    console.log(rating, review, roomId, userId);
+
+    const body = {
+      rating: rating,
+      comment: review,
+      workspace_room_id: workspaceRoomId,
+      user_id: userId,
+    };
+
+    fetch(`${appUrl}/v1/review/store`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        showToast('Review submitted successfully', 'success');
+        const reviewButton = document.getElementById(`review-button-${roomId}`);
+        reviewButton.disabled = true;
+        reviewButton.innerText = 'Review Submitted';
+        reviewButton.classList.add('cursor-not-allowed');
+        reviewButton.classList.add('text-white');
+        reviewButton.classList.add('bg-gray-300');
+        reviewButton.classList.remove('hover:bg-[#112211]');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        showToast('Failed to submit review', 'error');
+      });
+  }
+</script>
