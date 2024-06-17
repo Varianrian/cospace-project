@@ -46,7 +46,7 @@
                     class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-left text-sm leading-none text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                     min="09:00"
                     max="18:00"
-                    value="00:00"
+                    value="09:00"
                     required
                   />
                 </div>
@@ -68,7 +68,7 @@
                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm leading-none text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                     min="09:00"
                     max="18:00"
-                    value="00:00"
+                    value="18:00"
                     required
                   />
                 </div>
@@ -131,15 +131,16 @@
               <span>Total</span>
               <span class="font-medium">Rp {{ number_format($room->price * 1.1, 0, ',', '.') }}</span>
             </div>
-            <div class="mt-12 flex w-full flex-col items-center justify-center">
+            <div class="mt-12 flex w-full flex-col items-center justify-center" id="button-container">
               <button
                 type="submit"
+                id="pay-button"
                 class="mb-5 flex w-44 justify-center rounded-xl bg-blue-600 py-3 text-sm font-medium text-white shadow-sm"
                 form="paymentForm"
               >
                 Bayar
               </button>
-              <a href="#" class="flex w-44 justify-center rounded-xl bg-zinc-400 py-3 text-sm font-medium text-white">
+              <a href="#" class="flex w-44 justify-center rounded-xl bg-zinc-400 py-3 text-sm font-medium text-white hidden" id="view-ticket">
                 Lihat Tiket
               </a>
             </div>
@@ -151,7 +152,8 @@
 
   <script>
     const appUrl = '{{ config('app.url') }}';
-    console.log(appUrl);
+    const payButton = document.getElementById('pay-button');
+    const viewTicketButton = document.getElementById('view-ticket');
 
     document.getElementById('paymentForm').addEventListener('submit', async function (event) {
       event.preventDefault();
@@ -166,7 +168,26 @@
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
       };
+
+      //validate data
+      if (!data.date || !data.start_time || !data.end_time || !data.name || !data.email) {
+        showToast('Please fill all fields', 'error');
+        return;
+      }
+
+      if (data.date < '{{ $start_date }}') {
+        showToast('Date must be greater than or equal to today', 'error');
+        return;
+      }
+
       console.log(data);
+
+      if (data.start_time >= data.end_time) {
+        showToast('Start time must be less than end time', 'error');
+        return;
+      }
+
+      disableButton();
 
       const response = await fetch(`${appUrl}/v1/payment/charge`, {
         method: 'POST',
@@ -176,13 +197,23 @@
           'X-CSRF-TOKEN': '{{ csrf_token() }}',
         },
         body: JSON.stringify(data),
+      }).catch((error) => {
+        console.error('Error:', error);
+        showToast('An error occurred', 'error');
+        enableButton();
       });
 
       const result = await response.json();
       console.log(result.data);
+      if (result.status === 'error') {
+        showToast('An error occurred', 'error');
+        return;
+      }
       snap.pay(result.data.token, {
         onSuccess: function (result) {
-          console.log('success');
+          showToast('Payment successful', 'success');
+          disableButton('Payment successful');
+          showTicket();
           console.log(result);
         },
         onPending: function (result) {
@@ -190,13 +221,31 @@
           console.log(result);
         },
         onError: function (result) {
-          console.log('error');
+          showToast('Payment failed', 'error');
+          enableButton();
           console.log(result);
         },
         onClose: function () {
           console.log('customer closed the popup without finishing the payment');
+          enableButton();
         },
       });
     });
+
+    function disableButton(message = 'Processing...') {
+      payButton.disabled = true;
+      payButton.textContent = message;
+      payButton.classList.add('cursor-not-allowed', 'opacity-50');
+    }
+
+    function enableButton() {
+      payButton.disabled = false;
+      payButton.textContent = 'Bayar';
+      payButton.classList.remove('cursor-not-allowed', 'opacity-50');
+    }
+
+    function showTicket() {
+      viewTicketButton.classList.remove('hidden');
+    }
   </script>
 @endsection

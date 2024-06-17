@@ -14,13 +14,23 @@ class FacilitySeeder extends Seeder
     public function run(): void
     {
         Facility::create([
-            'name' => 'Air Conditioner',
-            'icon' => 'fas fa-fan',
+            'name' => 'AC',
+            'icon' => 'fas fa-snowflake',
         ]);
 
         Facility::create([
-            'name' => 'Projector',
-            'icon' => 'fas fa-video',
+            'name' => 'Smart TV',
+            'icon' => 'fas fa-tv',
+        ]);
+
+        Facility::create([
+            'name' => 'WiFi',
+            'icon' => 'fas fa-wifi',
+        ]);
+
+        Facility::create([
+            'name' => 'Free Parking',
+            'icon' => 'fas fa-parking',
         ]);
 
         Facility::create([
@@ -29,13 +39,18 @@ class FacilitySeeder extends Seeder
         ]);
 
         Facility::create([
-            'name' => 'Printer',
-            'icon' => 'fas fa-print',
+            'name' => 'Speaker',
+            'icon' => 'fas fa-volume-up',
         ]);
 
         Facility::create([
-            'name' => 'Scanner',
-            'icon' => 'fas fa-image',
+            'name' => 'Projector',
+            'icon' => 'fas fa-video',
+        ]);
+
+        Facility::create([
+            'name' => 'Printer',
+            'icon' => 'fas fa-print',
         ]);
     }
 }

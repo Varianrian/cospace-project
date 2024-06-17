@@ -59,6 +59,10 @@ class Payment extends Model
         'total_amount',
         'transaction_status',
         'transaction_time',
+        'check_in',
+        'check_out',
+        'duration',
+        'booking_date',
     ];
 
     /**
