@@ -14,6 +14,7 @@ use App\Http\Controllers\WorkspaceRoomsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MidtransNotificationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,4 +84,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/payment/notification', [MidtransNotificationController::class, 'notification'])->name('payment.notification');
     Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::post('/bookmark/store', [BookmarkController::class, 'store'])->name('bookmark.store');
+    Route::post('/bookmark/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 });

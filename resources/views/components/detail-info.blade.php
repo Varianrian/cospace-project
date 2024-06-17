@@ -82,7 +82,10 @@
       /Jam
     </p>
     <div class="flex items-center justify-center justify-between gap-3 pt-3">
-      <div class="rounded-[4px] border border-[#666666] p-4">
+      <div
+        class="{{ $bookmark ? 'bg-[#0F6FFF]' : '' }} rounded-[4px] border border-[#666666] p-4 hover:cursor-pointer hover:bg-sky-100"
+        id="bookmark"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -161,3 +164,47 @@
     ></iframe>
   </div>
 </div>
+
+<script>
+  const bookmark = document.getElementById('bookmark');
+  const appUrl = '{{ config('app.url') }}';
+  console.log(appUrl);
+
+  bookmark.addEventListener('click', () => {
+    bookmark.classList.toggle('bg-[#0F6FFF]');
+
+    if (bookmark.classList.contains('bg-[#0F6FFF]')) {
+      fetch(`${appUrl}/v1/bookmark/store`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          workspace_id: '{{ $workspace->id }}',
+          user_id: '{{ auth()->user()->id }}',
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          showToast('Bookmark berhasil ditambahkan', 'success');
+        });
+    } else {
+      fetch(`${appUrl}/v1/bookmark/destroy`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          workspace_id: '{{ $workspace->id }}',
+          user_id: '{{ auth()->user()->id }}',
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          showToast('Bookmark berhasil dihapus', 'success');
+        });
+    }
+  });
+</script>

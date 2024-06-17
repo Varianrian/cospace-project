@@ -15,11 +15,14 @@ class WorkspaceController extends Controller
 
     public function workspaceDetail(Workspace $workspace)
     {
+        $bookmark = auth()->user()->bookmarks->contains('workspace_id', $workspace->id);
+
         return view('pages.workspaceDetail', [
             'workspace' => $workspace,
             'rooms' => $workspace->rooms,
             'facilities' => $workspace->facilities,
             'categories' => $workspace->categories,
+            'bookmark' => $bookmark
         ]);
     }
 }

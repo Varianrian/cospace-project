@@ -65,4 +65,9 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail,
     {
         return $this->hasMany(Review::class);
     }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(UserBookmark::class);
+    }
 }
