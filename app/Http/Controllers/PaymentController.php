@@ -13,9 +13,13 @@ use App\Services\Midtrans;
 
 class PaymentController extends Controller
 {
-    public function payment()
+    public function payment(WorkspaceRoom $workspaceRoom)
     {
-        return view('pages.payment');
+        return view('pages.payment', [
+            'room' => $workspaceRoom,
+            'workspace' => $workspaceRoom->workspace,
+            'start_date' => now()->format('Y-m-d'),
+        ]);
     }
 
     use MidtransPaymentTrait;
@@ -24,6 +28,7 @@ class PaymentController extends Controller
     {
         $request->validate([
             'workspace_room_id' => 'required|exists:workspace_rooms,id',
+            'user_id' => 'required|exists:users,id'
         ]);
 
         /** @var User $user */
@@ -35,7 +40,7 @@ class PaymentController extends Controller
         //         'message' => 'User not found'
         //     ], 404);
         // }
-        $user = User::find(1);
+        $user = User::find($request->user_id);
 
         /** @var WorkspaceRoom $workspaceRoom */
         $workspaceRoom = WorkspaceRoom::find($request->workspace_room_id);

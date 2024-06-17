@@ -22,24 +22,25 @@ trait MidtransPaymentTrait
 
     public function generateSnapTransactionPayloads(User $user, WorkspaceRoom $workspaceRoom)
     {
-        $totalAmount = $workspaceRoom->price;
-
+        $tax = $workspaceRoom->price * 10 / 100;
+        $totalPrice = $workspaceRoom->price + $tax;
         return [
             'transaction_details' => [
                 'order_id' => $this->generateOrderId(),
-                'gross_amount' => $totalAmount,
-            ],
-            // 'user_id' => $this->generateUserId($user),
-            'credit_card' => [
-                'secure' => true,
-                'save_card' => true
+                'gross_amount' => $totalPrice,
             ],
             'item_details' => [
                 [
                     'id' => $workspaceRoom->id,
-                    'price' => $totalAmount,
+                    'price' => $workspaceRoom->price,
                     'quantity' => '1',
                     'name' => $workspaceRoom->name,
+                ],
+                [
+                    'id' => 'TAX',
+                    'price' => $tax,
+                    'quantity' => '1',
+                    'name' => 'TAX 10%',
                 ]
             ],
             'customer_details' => [
