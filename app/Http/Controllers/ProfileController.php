@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -36,6 +36,17 @@ class ProfileController extends Controller
             ->get();
         return view('pages.profileBooking', [
             'payments' => $payment
+        ]);
+    }
+
+    public function profileBookmark()
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        $workspaces = $user->bookmarkWorkspaces()
+            ->get();
+        return view('pages.bookmark', [
+            'workspaces' => $workspaces
         ]);
     }
 }

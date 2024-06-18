@@ -19,7 +19,7 @@
           Reservasi Saya
         </button>
       </a>
-      <a href="{{ route('profileBooking') }}">
+      <a href="{{ route('profileBookmark') }}">
         <button
           type="button"
           class="rounded-e-lg border border-gray-900 bg-transparent px-40 py-5 text-sm font-medium text-[#079D75] hover:bg-gray-900 hover:text-white focus:z-10 focus:bg-gray-900 focus:text-[#079D75] focus:ring-2 focus:ring-gray-500"

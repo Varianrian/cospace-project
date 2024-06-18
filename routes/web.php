@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
     Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
+    Route::get('/profileBookmark', [ProfileController::class, 'profileBookmark'])->name('profileBookmark');
 });
 
 Route::group(['prefix' => 'auth'], function () {
