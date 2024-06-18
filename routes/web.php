@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmailVerificationRequest;
 use App\Http\Controllers\WorkspaceRoomsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MidtransNotificationController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,17 +29,19 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('workspace');
-Route::get('/detailworkspace', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
-Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
-Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
-Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
+Route::get('/detail-workspace/{workspace}', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
+Route::middleware('auth')->group(function () {
+    Route::get('/payment/{workspaceRoom}', [PaymentController::class, 'payment'])->name('payment');
+
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
+    Route::post('/profile/change-password', [ProfileController::class, 'profileChangePassword'])->name('profile.change-password');
 
 
-// Route::get('/aboutus', function () {
-//     return view('pages.aboutus', [
-//     ]);
-// });
+    Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
+    Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
+    Route::get('/profileBookmark', [ProfileController::class, 'profileBookmark'])->name('profileBookmark');
+});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login.view');
@@ -73,13 +78,14 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::get('user', function (Request $request) {
-        return $request->user();
-    });
-
     Route::post('payment/charge', [PaymentController::class, 'charge'])->name('payment.charge');
+    Route::post('/payment/notification', [MidtransNotificationController::class, 'notification'])->name('payment.notification');
 
     Route::apiResource('workspace_categories', WorkspaceCategoriesController::class)->only(['index', 'show']);
     Route::apiResource('workspaces', WorkspaceListController::class)->only(['index', 'show']);
     Route::apiResource('workspace_rooms', WorkspaceRoomsController::class)->only(['index', 'show']);
+
+    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::post('/bookmark/store', [BookmarkController::class, 'store'])->name('bookmark.store');
+    Route::post('/bookmark/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 });

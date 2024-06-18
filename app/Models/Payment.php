@@ -59,6 +59,10 @@ class Payment extends Model
         'total_amount',
         'transaction_status',
         'transaction_time',
+        'check_in',
+        'check_out',
+        'duration',
+        'booking_date',
     ];
 
     /**
@@ -86,6 +90,34 @@ class Payment extends Model
     public function getRouteKey()
     {
         return $this->id;
+    }
+
+    /**
+     * Map Midtrans Payment Status to Payment Status
+     */
+    public static function getPaymentStatus(string $transactionStatus): string
+    {
+        return match ($transactionStatus) {
+            self::MIDTRANS_STATUS_SETTLEMENT, self::MIDTRANS_STATUS_CAPTURE => self::PAYMENT_STATUS_SUCCESS,
+            self::MIDTRANS_STATUS_DENY, self::MIDTRANS_STATUS_CANCEL, self::MIDTRANS_STATUS_EXPIRE => self::PAYMENT_STATUS_FAILED,
+            default => self::PAYMENT_STATUS_PENDING,
+        };
+    }
+
+    /**
+     * Relationship with Workspace Room
+     */
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(WorkspaceRoom::class, 'workspace_room_id');
+    }
+
+    public function reviewed(string $userId, string $roomId): bool
+    {
+        $review = Review::where('user_id', $userId)
+            ->where('workspace_room_id', $roomId)
+            ->exists();
+        return $review;
     }
 
 }

@@ -14,6 +14,11 @@ class WorkspaceCategorySeeder extends Seeder
     public function run(): void
     {
         WorkspaceCategory::create([
+            'name' => 'Coworking Space',
+            'description' => 'A room for coworking (shared office)',
+        ]);
+
+        WorkspaceCategory::create([
             'name' => 'Meeting Room',
             'description' => 'A room for meeting',
         ]);
@@ -24,18 +29,13 @@ class WorkspaceCategorySeeder extends Seeder
         ]);
 
         WorkspaceCategory::create([
-            'name' => 'Shared Office',
-            'description' => 'A shared office',
-        ]);
-
-        WorkspaceCategory::create([
             'name' => 'Event Space',
-            'description' => 'A space for event',
+            'description' => 'A room for event',
         ]);
 
         WorkspaceCategory::create([
-            'name' => 'Coworking Space',
-            'description' => 'A coworking space',
+            'name' => 'Studio',
+            'description' => 'A studio',
         ]);
     }
 }

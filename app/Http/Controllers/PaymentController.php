@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentChargeRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -13,34 +15,25 @@ use App\Services\Midtrans;
 
 class PaymentController extends Controller
 {
-    public function payment()
+    public function payment(WorkspaceRoom $workspaceRoom)
     {
-        return view('pages.payment');
+        return view('pages.payment', [
+            'room' => $workspaceRoom,
+            'workspace' => $workspaceRoom->workspace,
+            'start_date' => now()->format('Y-m-d'),
+        ]);
     }
 
     use MidtransPaymentTrait;
 
-    public function charge(Request $request): JsonResponse
+    public function charge(PaymentChargeRequest $request): JsonResponse
     {
-        $request->validate([
-            'workspace_room_id' => 'required|exists:workspace_rooms,id',
-        ]);
-
-        /** @var User $user */
-        // $user = auth()->user();
-
-        // if ($user === null) {
-        //     return new JsonResponse([
-        //         'status' => 'error',
-        //         'message' => 'User not found'
-        //     ], 404);
-        // }
-        $user = User::find(1);
+        $user = User::find($request->user_id);
 
         /** @var WorkspaceRoom $workspaceRoom */
         $workspaceRoom = WorkspaceRoom::find($request->workspace_room_id);
 
-        $payloads = $this->generateSnapTransactionPayloads($user, $workspaceRoom);
+        $payloads = $this->generateSnapTransactionPayloads($user, $workspaceRoom, $request);
 
         // Set blanket expiry (both page and payment expiry) on sandbox mode for testing
         if (!config('midtrans.is_production')) {
@@ -62,7 +55,8 @@ class PaymentController extends Controller
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
+                'payloads' => $payloads
             ], 500);
         }
 
@@ -70,14 +64,24 @@ class PaymentController extends Controller
         $responseBody = json_decode($response->getBody()->getContents());
         $responseBody->order_id = $payloads['transaction_details']['order_id'];
 
+        $duration = Carbon::parse($request->end_time)->diffInMinutes(Carbon::parse($request->start_time));
+        $hours = ceil($duration / 60);
+        $price = $workspaceRoom->price * $hours;
+        $tax = $price * 0.1;
+        $totalPrice = $price + $tax;
+
         try {
             Payment::create([
                 'id' => $payloads['transaction_details']['order_id'],
                 'user_id' => $user->id,
                 'workspace_room_id' => $workspaceRoom->id,
                 'token' => $responseBody->token,
-                'total_amount' => $workspaceRoom->price,
-                'status' => Payment::PAYMENT_STATUS_STARTED
+                'total_amount' => $totalPrice,
+                'status' => Payment::PAYMENT_STATUS_STARTED,
+                'check_in' => Carbon::parse($request->date . ' ' . $request->start_time),
+                'check_out' => Carbon::parse($request->date . ' ' . $request->end_time),
+                'booking_date' => Carbon::parse($request->date),
+                'duration' => $hours,
             ]);
 
             return new JsonResponse([
@@ -89,7 +93,7 @@ class PaymentController extends Controller
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
         }
     }

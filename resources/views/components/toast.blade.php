@@ -1,4 +1,4 @@
-<div class="absolute inset-x-0 top-0 z-50 mt-10 flex hidden flex-col items-end space-y-4 p-4" id="toast-container">
+<div class="pointer-events-none fixed inset-0 z-50 mt-8 flex hidden h-fit justify-end px-4 py-6" id="toast-container">
   <!-- Toasts go here -->
   <div
     id="toast-default"

@@ -42,6 +42,14 @@ class Workspace extends Model implements HasMedia
     ];
 
     /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'id';
+    }
+
+    /**
      * Model relationship definition.
      * Workspace belongs to many Facilities
      *

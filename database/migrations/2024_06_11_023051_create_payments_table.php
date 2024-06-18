@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('workspace_room_id')->constrained('workspace_rooms')->onDelete('cascade');
             $table->string('transaction_id')->nullable();
+            $table->timestamp('check_in')->nullable();
+            $table->timestamp('check_out')->nullable();
+            $table->integer('duration');
+            $table->date('booking_date');
             $table->string('status');
             $table->string('token')->nullable();
             $table->string('payment_type')->nullable();

@@ -55,4 +55,29 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail,
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(UserBookmark::class);
+    }
+
+    public function bookmarkWorkspaces()
+    {
+        return $this->belongsToMany(Workspace::class, 'user_bookmarks');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_profile');
+    }
 }
