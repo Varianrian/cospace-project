@@ -1,7 +1,7 @@
 <div class="flex justify-center">
-  <div class="px-20 lg:px-10 py-10">
+  <div class="px-20 py-10 lg:px-10">
     <h2 class="text-[24px] font-bold text-[#0021A3]">Pencarian Relevan</h2>
-    <div class="flex flex-wrap justify-start gap-6 lg:gap-2 px-1 pt-5">
+    <div class="flex flex-wrap justify-start gap-6 px-1 pt-5 lg:gap-2">
       <x-workspace-card
         image="assets/images/rekom1.png"
         name="EduPlex Coworking Space"

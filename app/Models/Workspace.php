@@ -93,6 +93,11 @@ class Workspace extends Model implements HasMedia
         return $this->hasMany(WorkspaceRoom::class, 'workspace_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasManyThrough(Review::class, WorkspaceRoom::class, 'workspace_id', 'workspace_room_id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection(self::MEDIA_COLLECTION)

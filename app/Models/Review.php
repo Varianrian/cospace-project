@@ -39,6 +39,11 @@ class Review extends Model
         return $this->belongsTo(WorkspaceRoom::class);
     }
 
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

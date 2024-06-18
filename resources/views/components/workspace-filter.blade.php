@@ -7,7 +7,7 @@
           <h2 id="accordion-open-heading-1">
             <button
               type="button"
-              class="flex w-full items-center justify-between py-5 xl:pr-5 lg:pr-0 font-medium text-black rtl:text-right"
+              class="flex w-full items-center justify-between py-5 font-medium text-black lg:pr-0 xl:pr-5 rtl:text-right"
               data-accordion-target="#accordion-open-body-1"
               aria-expanded="true"
               aria-controls="accordion-open-body-1"
@@ -32,7 +32,7 @@
             </button>
           </h2>
           <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-            <div class="border-b border-gray-200 xl:px-5 pb-5">
+            <div class="border-b border-gray-200 pb-5 xl:px-5">
               <button
                 value="all"
                 type="button"
@@ -218,6 +218,26 @@
                     class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
                   />
                   <label for="facility-7" class="ms-2 text-sm font-medium text-black">Printer</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input
+                      id="facility-7"
+                      type="checkbox"
+                      name="facilities"
+                      value="WiFi"
+                      class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                    />
+                    <label for="facility-7" class="ms-2 text-sm font-medium text-black">WiFi</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input
+                      id="facility-7"
+                      type="checkbox"
+                      name="facilities"
+                      value="Free Parking"
+                      class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                    />
+                    <label for="facility-7" class="ms-2 text-sm font-medium text-black">Free Parking</label>
                 </div>
               </div>
             </div>

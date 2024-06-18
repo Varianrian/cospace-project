@@ -22,6 +22,9 @@
       data-client-key="SB-Mid-client-OHNMYm46EQhPheB2"
     ></script>
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <head>
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+    </head>
   </head>
 
   <body>

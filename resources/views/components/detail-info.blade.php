@@ -1,7 +1,7 @@
 <div>
   <div class="grid grid-cols-2 gap-2 px-32 py-7">
     <img
-      src="{{ $workspace->mediaUrls[0] }}"
+      src="{{ $workspace->mediaUrls ? $workspace->mediaUrls[0] : 'https://via.placeholder.com/150' }}"
       alt="{{ $workspace->name }}"
       class="max-h-[400px] w-full object-cover"
     />
@@ -82,7 +82,8 @@
       /Jam
     </p>
     <div class="flex items-center justify-center justify-between gap-3 pt-3">
-      <div
+      @auth    
+        <div
         class="{{ $bookmark ? 'bg-[#0F6FFF]' : '' }} rounded-[4px] border border-[#666666] p-4 hover:cursor-pointer hover:bg-sky-100"
         id="bookmark"
       >
@@ -100,6 +101,7 @@
           />
         </svg>
       </div>
+      @endauth
       <div class="rounded-[4px] border border-[#666666] p-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -153,18 +155,11 @@
   </div>
   <div class="grid basis-2/5 justify-end">
     <h2 class="text-[18px] font-semibold text-[#0021A3]">Lokasi</h2>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15842.445792809822!2d107.7701313!3d-6.9369551!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c5c68d6a472d%3A0x981a8063d0e4a8c1!2sPondok%20Rakha%2065!5e0!3m2!1sen!2sid!4v1718532207672!5m2!1sen!2sid"
-      width="495"
-      height="225"
-      style="border: 0"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
+    {!! $workspace->maps !!}
   </div>
 </div>
 
+@auth    
 <script>
   const bookmark = document.getElementById('bookmark');
   const appUrl = '{{ config('app.url') }}';
@@ -208,3 +203,4 @@
     }
   });
 </script>
+@endauth
