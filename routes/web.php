@@ -32,7 +32,11 @@ Route::get('/workspace', [WorkspaceController::class, 'workspace'])->name('works
 Route::get('/detail-workspace/{workspace}', [WorkspaceController::class, 'workspaceDetail'])->name('workspaceDetail');
 Route::middleware('auth')->group(function () {
     Route::get('/payment/{workspaceRoom}', [PaymentController::class, 'payment'])->name('payment');
+
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
+
+
     Route::get('/profileReservation', [ProfileController::class, 'profileReservation'])->name('profileReservation');
     Route::get('/profileBooking', [ProfileController::class, 'profileBooking'])->name('profileBooking');
     Route::get('/profileBookmark', [ProfileController::class, 'profileBookmark'])->name('profileBookmark');

@@ -31,92 +31,106 @@
   </div>
   <div class="px-20 py-10">
     <h2 class="text-[22px] font-semibold">Pengaturan Akun</h2>
-    <form class="">
+    <form class="" action="{{ route('profile.update') }}" method="POST" id="profile-form">
       <div class="grid grid-cols-2">
         <div class="pr-3">
           <div class="mb-4 mt-5">
-            <label for="email" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Username</label>
+            <label for="name" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Username</label>
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="name"
+              name="name"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
               placeholder="John Doe"
+              value="{{ auth()->user()->name }}"
               required
             />
           </div>
           <div class="mb-4 mt-5">
-            <label for="password" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <label for="email" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
             <input
-              type="password"
-              id="password"
-              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-              placeholder="john.doe@gmail.com"
+              type="email"
+              id="email"
+              name="email"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="johndoe@mail.com"
+              value="{{ auth()->user()->email }}"
+              disabled
               required
             />
           </div>
           <div class="mb-4">
-            <label for="password" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
+            <label for="phone" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
               Nomor Telepon
             </label>
             <input
-              type="password"
-              id="password"
+              type="text"
+              id="phone"
+              name="phone"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
               placeholder="08123456789"
               required
+              value="{{ $profile ? $profile->phone : null }}"
             />
           </div>
         </div>
         <div class="pl-3">
           <div class="mb-4 mt-5">
-            <label for="email" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
+            <label for="address" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="address"
+              name="address"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-              placeholder="Bandung"
+              placeholder="Jl. Jend. Sudirman No. 1"
               required
+              value="{{ $profile ? $profile->address : null }}"
             />
           </div>
           <div class="mb-4 mt-5">
-            <label for="password" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
+            <label for="job" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
             <input
-              type="password"
-              id="password"
+              type="text"
+              id="job"
+              name="job"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
               placeholder="Mahasiswa"
               required
+              value="{{ $profile ? $profile->job : null }}"
             />
           </div>
           <div class="mb-4">
-            <label for="password" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
+            <label for="birthday" class="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
               Tanggal Lahir
             </label>
             <input
-              type="password"
-              id="password"
+              type="date"
+              id="birthday"
+              name="birthday"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
               placeholder="12-08-2023"
               required
+              value="{{ $profile ? $profile->birthday : null }}"
             />
           </div>
         </div>
       </div>
+      <div class="flex items-center justify-center gap-5">
+        <button
+          type="submit"
+          class="mt-3 w-full rounded-lg bg-[#0F6FFF] px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+        >
+          Simpan Perubahan
+        </button>
+        <button
+          type="button"
+          onclick="document.getElementById('profile-form').reset()"
+          class="mt-3 w-full rounded-lg border border-[#000000] bg-white px-14 py-2.5 text-center text-[14px] font-medium text-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+        >
+          Batal
+        </button>
+      </div>
     </form>
-    <div class="flex items-center justify-center gap-5">
-      <button
-        type="submit"
-        class="mt-3 w-full rounded-lg bg-[#0F6FFF] px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
-      >
-        Simpan Perubahan
-      </button>
-      <button
-        type="submit"
-        class="mt-3 w-full rounded-lg border border-[#000000] bg-white px-14 py-2.5 text-center text-[14px] font-medium text-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
-      >
-        Batal
-      </button>
-    </div>
     <div class="lg:w-1/2 lg:pr-3">
       <h2 class="text-[22px] font-semibold">Ubah Password</h2>
       <div class="mb-4 mt-5">

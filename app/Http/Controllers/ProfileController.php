@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\User;
@@ -10,7 +11,34 @@ class ProfileController extends Controller
 {
     public function profile()
     {
-        return view('pages.profile');
+        $profile = Profile::where('user_id', auth()->id())
+            ->first();
+
+        return view('pages.profile', [
+            'profile' => $profile
+        ]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $profile = Profile::where('user_id', auth()->id())
+            ->first();
+
+        if (!$profile) {
+            $profile = new Profile();
+            $profile->user_id = auth()->id();
+        }
+
+        $profile->phone = $request->phone;
+        $profile->address = $request->address;
+        $profile->job = $request->job;
+        $profile->birthday = $request->birthday;
+        $profile->save();
+
+        return redirect()->route('profile')->with([
+            'status' => 'success',
+            'message' => 'Profile updated successfully!'
+        ]);
     }
 
     public function profileReservation()

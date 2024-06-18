@@ -75,4 +75,9 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail,
     {
         return $this->belongsToMany(Workspace::class, 'user_bookmarks');
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_profile');
+    }
 }
