@@ -45,7 +45,7 @@
                 type="button"
                 class="category-button mb-2 me-2 rounded-[4px] border border-[#079D75] px-2 py-1.5 text-center text-xs font-medium text-black focus:outline-1 focus:ring-2 focus:ring-green-300"
               >
-                Coworking (Shared)
+                Coworking (Private)
               </button>
               <button
                 value="Meeting Room"
