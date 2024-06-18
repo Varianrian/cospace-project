@@ -153,15 +153,7 @@
   </div>
   <div class="grid basis-2/5 justify-end">
     <h2 class="text-[18px] font-semibold text-[#0021A3]">Lokasi</h2>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15842.445792809822!2d107.7701313!3d-6.9369551!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c5c68d6a472d%3A0x981a8063d0e4a8c1!2sPondok%20Rakha%2065!5e0!3m2!1sen!2sid!4v1718532207672!5m2!1sen!2sid"
-      width="495"
-      height="225"
-      style="border: 0"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
+    {{ $workspace->maps }}
   </div>
 </div>
 

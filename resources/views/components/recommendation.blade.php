@@ -3,86 +3,18 @@
   Terpopuler, sering dipesan oleh pengunjung kami
 </p>
 <div class="flex flex-wrap justify-center gap-6 pt-5 lg:px-10">
-  <x-workspace-card
-    class="block sm:block md:block lg:block"
-    image="assets/images/rekom1.png"
-    name="EduPlex Coworking Space"
-    address="Jl. Ir. H. Juanda No.84, Lebakgede"
-    cost="Mulai dari Rp15.000/Jam"
-    rating="4.8"
-    ulasan="(32 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="block sm:block md:block lg:block"
-    image="assets/images/rekom2.png"
-    name="CO&CO Hub"
-    address="Jl. Dipati Ukur No.33, Lebakgede"
-    cost="Mulai dari Rp20.000/Jam"
-    rating="4.6"
-    ulasan="(24 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="hidden sm:hidden md:block lg:block"
-    image="assets/images/rekom3.png"
-    name="Point Lab Co-working Space"
-    address="Jl. Banda No.30, Citarum"
-    cost="Mulai dari Rp10.000/Jam"
-    rating="4.7"
-    ulasan="(27 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="hidden sm:hidden md:block lg:block"
-    image="assets/images/rekom4.png"
-    name="NextSPACE - UnionSPACE"
-    address="Jl. Trunojoyo No.11, Citarum"
-    cost="Mulai dari Rp20.000/Jam"
-    rating="4.5"
-    ulasan="(17 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="hidden sm:hidden md:block lg:block"
-    image="assets/images/rekom1.png"
-    name="EduPlex Coworking Space"
-    address="Jl. Ir. H. Juanda No.84, Lebakgede"
-    cost="Mulai dari Rp15.000/Jam"
-    rating="4.8"
-    ulasan="(32 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="hidden sm:hidden md:block lg:block"
-    image="assets/images/rekom2.png"
-    name="CO&CO Hub"
-    address="Jl. Dipati Ukur No.33, Lebakgede"
-    cost="Mulai dari Rp20.000/Jam"
-    rating="4.6"
-    ulasan="(24 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="hidden sm:hidden md:block lg:block"
-    image="assets/images/rekom3.png"
-    name="Point Lab Co-working Space"
-    address="Jl. Banda No.30, Citarum"
-    cost="Mulai dari Rp10.000/Jam"
-    rating="4.7"
-    ulasan="(27 ulasan)"
-    id="1"
-  />
-  <x-workspace-card
-    class="hidden sm:hidden md:block lg:block"
-    image="assets/images/rekom4.png"
-    name="NextSPACE - UnionSPACE"
-    address="Jl. Trunojoyo No.11, Citarum"
-    cost="Mulai dari Rp20.000/Jam"
-    rating="4.5"
-    ulasan="(17 ulasan)"
-    id="1"
-  />
+  @foreach ($workspaces as $workspace)
+      <x-workspace-card
+        id="{{ $workspace->id }}"
+        image="{{ $workspace->mediaUrls[0] ? $workspace->mediaUrls[0] : '' }}"
+        name=" {!!$workspace->name !!}"
+        address="{{ $workspace->address }}"
+        cost="{{ $workspace->price }}"
+        rating="{{ $workspace->rating_avg }}"
+        ulasan="{{ $workspace->rating_count }}"
+      />
+    @endforeach
+
 </div>
 <div class="mt-8 flex items-center justify-center">
   <a

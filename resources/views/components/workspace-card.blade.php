@@ -3,7 +3,7 @@
     <img class="h-full w-full overflow-hidden rounded-lg object-cover" src="{{ $image }}" alt="{{ $name }}" />
   </div>
   <div class="px-2 pt-5">
-    <a href="#">
+    <a href="/detail-workspace/{{ $id }}">
       <h5 class="text-[16px] font-medium tracking-tight text-black">{{ $name }}</h5>
     </a>
     <p class="mb-1 text-xs text-black">{{ $address }}</p>
