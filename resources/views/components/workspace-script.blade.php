@@ -201,7 +201,16 @@ function formSubmit(event){
         let isCapacities = true;
 
         if(price !== null){
-            isPrice = workspace.price <= price;
+            // isPrice = workspace.price <= price;
+            if (price === '0') {
+                isPrice = workspace.price <= 50000;
+            } else if (price === '1') {
+                isPrice = workspace.price > 50000 && workspace.price <= 100000;
+            } else if (price === '2') {
+                isPrice = workspace.price > 100000 && workspace.price <= 200000;
+            } else if (price === '3') {
+                isPrice = workspace.price > 200000 && workspace.price <= 500000;
+            }
         }
 
         if(facilities.length > 0){

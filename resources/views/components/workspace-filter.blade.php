@@ -113,20 +113,40 @@
                     id="checkbox-1"
                     name="price"
                     type="radio"
-                    value="15000"
+                    value="0"
                     class="price-range h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
                   />
-                  <label for="checkbox-1" class="ms-2 text-sm font-medium text-black">Rp 0 - Rp 15.000</label>
+                  <label for="checkbox-1" class="ms-2 text-sm font-medium text-black">Rp 0 - Rp 50.000</label>
                 </div>
                 <div class="mb-4 flex items-center">
                   <input
                     id="checkbox-2"
                     name="price"
                     type="radio"
-                    value="30000"
+                    value="1"
                     class="price-range h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
                   />
-                  <label for="checkbox-2" class="ms-2 text-sm font-medium text-black">Rp 15.001 - Rp 30.000</label>
+                  <label for="checkbox-2" class="ms-2 text-sm font-medium text-black">Rp 50.000 - Rp 100.000</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input
+                      id="checkbox-3"
+                      name="price"
+                      type="radio"
+                      value="2"
+                      class="price-range h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                    />
+                    <label for="checkbox-3" class="ms-2 text-sm font-medium text-black">Rp 100.000 - Rp 200.000</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input
+                      id="checkbox-4"
+                      name="price"
+                      type="radio"
+                      value="3"
+                      class="price-range h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                    />
+                    <label for="checkbox-4" class="ms-2 text-sm font-medium text-black">Rp 200.000 - Rp 500.000</label>
                 </div>
               </div>
             </div>
