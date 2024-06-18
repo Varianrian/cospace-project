@@ -131,7 +131,7 @@
                 Bayar
               </button>
               <a
-                href="#"
+                href="{{route('profileBooking')}}"
                 class="flex hidden w-44 justify-center rounded-xl bg-zinc-400 py-3 text-sm font-medium text-white"
                 id="view-ticket"
               >

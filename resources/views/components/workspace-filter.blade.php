@@ -219,6 +219,26 @@
                   />
                   <label for="facility-7" class="ms-2 text-sm font-medium text-black">Printer</label>
                 </div>
+                <div class="mb-4 flex items-center">
+                    <input
+                      id="facility-7"
+                      type="checkbox"
+                      name="facilities"
+                      value="WiFi"
+                      class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                    />
+                    <label for="facility-7" class="ms-2 text-sm font-medium text-black">WiFi</label>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input
+                      id="facility-7"
+                      type="checkbox"
+                      name="facilities"
+                      value="Free Parking"
+                      class="h-4 w-4 rounded border-2 border-black text-[#0021A3] focus:ring-blue-500"
+                    />
+                    <label for="facility-7" class="ms-2 text-sm font-medium text-black">Free Parking</label>
+                </div>
               </div>
             </div>
             <div id="submit" class="flex justify-center">
