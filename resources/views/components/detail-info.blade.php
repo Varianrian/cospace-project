@@ -82,7 +82,8 @@
       /Jam
     </p>
     <div class="flex items-center justify-center justify-between gap-3 pt-3">
-      <div
+      @auth    
+        <div
         class="{{ $bookmark ? 'bg-[#0F6FFF]' : '' }} rounded-[4px] border border-[#666666] p-4 hover:cursor-pointer hover:bg-sky-100"
         id="bookmark"
       >
@@ -100,6 +101,7 @@
           />
         </svg>
       </div>
+      @endauth
       <div class="rounded-[4px] border border-[#666666] p-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -157,6 +159,7 @@
   </div>
 </div>
 
+@auth    
 <script>
   const bookmark = document.getElementById('bookmark');
   const appUrl = '{{ config('app.url') }}';
@@ -200,3 +203,4 @@
     }
   });
 </script>
+@endauth
