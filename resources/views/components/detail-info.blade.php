@@ -153,7 +153,7 @@
   </div>
   <div class="grid basis-2/5 justify-end">
     <h2 class="text-[18px] font-semibold text-[#0021A3]">Lokasi</h2>
-    {{ $workspace->maps }}
+    {!! $workspace->maps !!}
   </div>
 </div>
 
