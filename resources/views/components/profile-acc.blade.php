@@ -131,94 +131,103 @@
         </button>
       </div>
     </form>
-    <div class="lg:w-1/2 lg:pr-3">
+    <div class="lg:w-1/2 lg:pr-3" id="password-section">
       <h2 class="text-[22px] font-semibold">Ubah Password</h2>
-      <div class="mb-4 mt-5">
-        <label for="email" class="mb-2 block text-sm font-medium text-[#666666]">Password Saat Ini</label>
-        <div class="relative flex flex-col justify-center text-stone-500">
-          <input
-            type="password"
-            id="current-password"
-            class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 pr-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Masukkan Password Anda"
-            required
-          />
-          <i
-            class="fas fa-eye-slash absolute right-5 top-1/2 w-[18px] -translate-y-1/2 transform cursor-pointer text-black"
-            id="toggleCurrentPassword"
-          ></i>
+      <form class="" action="{{ route('profile.change-password') }}" method="POST" id="password-form">
+        <div class="mb-4 mt-5">
+          <label for="current-password" class="mb-2 block text-sm font-medium text-[#666666]">Password Saat Ini</label>
+          <div class="relative flex flex-col justify-center text-stone-500">
+            <input
+              type="password"
+              id="current-password"
+              name="current_password"
+              class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 pr-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="Masukkan Password Anda"
+              required
+            />
+            <i
+              class="fas fa-eye-slash absolute right-5 top-1/2 w-[18px] -translate-y-1/2 transform cursor-pointer text-black"
+              id="toggleCurrentPassword"
+            ></i>
+          </div>
         </div>
-      </div>
-      <div class="mt-4 w-full text-right text-sm text-stone-500 underline max-md:max-w-full">
-        <a href="">Lupa Password?</a>
-      </div>
-      <div class="mb-4 mt-5">
-        <label for="email" class="mb-2 block text-sm font-medium text-[#666666]">Password Baru</label>
-        <div class="relative flex flex-col justify-center text-stone-500">
-          <input
-            type="password"
-            id="current-password"
-            class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 pr-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Masukkan Password Baru"
-            required
-          />
-          <i
-            class="fas fa-eye-slash absolute right-5 top-1/2 w-[18px] -translate-y-1/2 transform cursor-pointer text-black"
-            id="toggleCurrentPassword"
-          ></i>
+        <div class="mt-4 w-full text-right text-sm text-stone-500 underline max-md:max-w-full">
+          <a href="">Lupa Password?</a>
         </div>
-      </div>
-
-      <div class="mb-4 mt-5">
-        <label for="email" class="mb-2 block text-sm font-medium text-[#666666]">Password Saat Ini</label>
-        <div class="relative flex flex-col justify-center text-stone-500">
-          <input
-            type="password"
-            id="current-password"
-            class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 pr-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Konfirmasi Password Baru"
-            required
-          />
-          <i
-            class="fas fa-eye-slash absolute right-5 top-1/2 w-[18px] -translate-y-1/2 transform cursor-pointer text-black"
-            id="toggleCurrentPassword"
-          ></i>
+        <div class="mb-4 mt-5">
+          <label for="password" class="mb-2 block text-sm font-medium text-[#666666]">Password Baru</label>
+          <div class="relative flex flex-col justify-center text-stone-500">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 pr-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="Masukkan Password Baru"
+              required
+            />
+            <i
+              class="fas fa-eye-slash absolute right-5 top-1/2 w-[18px] -translate-y-1/2 transform cursor-pointer text-black"
+              id="togglePassword"
+            ></i>
+          </div>
         </div>
-      </div>
-      <div class="flex items-center justify-center gap-5">
-        <button
-          type="submit"
-          class="mt-3 w-full rounded-lg bg-[#0F6FFF] px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
-        >
-          Simpan Perubahan
-        </button>
-        <button
-          type="submit"
-          class="mt-3 w-full rounded-lg border border-[#000000] bg-white px-14 py-2.5 text-center text-[14px] font-medium text-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
-        >
-          Batal
-        </button>
-      </div>
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const togglePasswordVisibility = (toggleId, inputId) => {
-            const toggleIcon = document.getElementById(toggleId);
-            const passwordInput = document.getElementById(inputId);
+        @error('password')
+          <div class="text-sm text-red-500">{{ $message }}</div>
+        @enderror
 
-            toggleIcon.addEventListener('click', function () {
-              const isPasswordHidden = passwordInput.type === 'password';
-              passwordInput.type = isPasswordHidden ? 'text' : 'password';
-              toggleIcon.classList.toggle('fa-eye', isPasswordHidden);
-              toggleIcon.classList.toggle('fa-eye-slash', !isPasswordHidden);
-            });
-          };
-
-          togglePasswordVisibility('toggleCurrentPassword', 'current-password');
-          togglePasswordVisibility('toggleNewPassword', 'new-password');
-          togglePasswordVisibility('toggleConfirmPassword', 'confirm-password');
-        });
-      </script>
+        <div class="mb-4 mt-5">
+          <label for="confirm-password" class="mb-2 block text-sm font-medium text-[#666666]">Password Saat Ini</label>
+          <div class="relative flex flex-col justify-center text-stone-500">
+            <input
+              type="password"
+              id="confirm-password"
+              name="password_confirmation"
+              class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 pr-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="Konfirmasi Password Baru"
+              required
+            />
+            <i
+              class="fas fa-eye-slash absolute right-5 top-1/2 w-[18px] -translate-y-1/2 transform cursor-pointer text-black"
+              id="toggleConfirmPassword"
+            ></i>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-5">
+          <button
+            type="submit"
+            class="mt-3 w-full rounded-lg bg-[#0F6FFF] px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+          >
+            Simpan Perubahan
+          </button>
+          <button
+            type="button"
+            onclick="document.getElementById('password-form').reset()"
+            class="mt-3 w-full rounded-lg border border-[#000000] bg-white px-14 py-2.5 text-center text-[14px] font-medium text-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+          >
+            Batal
+          </button>
+        </div>
+      </form>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const togglePasswordVisibility = (toggleId, inputId) => {
+          const toggleIcon = document.getElementById(toggleId);
+          const passwordInput = document.getElementById(inputId);
+
+          toggleIcon.addEventListener('click', function () {
+            const isPasswordHidden = passwordInput.type === 'password';
+            passwordInput.type = isPasswordHidden ? 'text' : 'password';
+            toggleIcon.classList.toggle('fa-eye', isPasswordHidden);
+            toggleIcon.classList.toggle('fa-eye-slash', !isPasswordHidden);
+          });
+        };
+
+        togglePasswordVisibility('toggleCurrentPassword', 'current-password');
+        togglePasswordVisibility('togglePassword', 'password');
+        togglePasswordVisibility('toggleConfirmPassword', 'confirm-password');
+      });
+    </script>
     <div class="mt-16">
       <div class="flex items-center justify-end gap-5">
         <button

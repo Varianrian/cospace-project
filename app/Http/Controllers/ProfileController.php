@@ -41,6 +41,30 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function profileChangePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = auth()->user();
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return redirect()->route('profile')->with([
+                'status' => 'error',
+                'message' => 'The current password is incorrect.'
+            ]);
+        }
+
+        $user->password = \Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('profile')->with([
+            'status' => 'success',
+            'message' => 'Password updated successfully!'
+        ]);
+    }
+
     public function profileReservation()
     {
         $user = auth()->user();
