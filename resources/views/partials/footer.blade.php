@@ -10,19 +10,19 @@
         <div>
           <ul class="text-right font-light text-white">
             <li class="mb-2 font-[16px]">
-              <a href="#" class="hover:underline">Home</a>
+              <a href="{{ route('home') }}" class="hover:underline">Home</a>
             </li>
             <li class="mb-2 font-[16px]">
-              <a href="#" class="hover:underline">Workspace</a>
+              <a href="{{ route('workspace') }}" class="hover:underline">Workspace</a>
             </li>
             <li class="mb-2 font-[16px]">
-              <a href="#" class="hover:underline">Tentang Kami</a>
+              <a href="{{ route('home') }}" class="hover:underline">Tentang Kami</a>
             </li>
             <li class="mb-2 font-[16px]">
-              <a href="#" class="hover:underline">Profil</a>
+              <a href="{{ route('profile') }}" class="hover:underline">Profil</a>
             </li>
             <li class="mb-2 font-[16px]">
-              <a href="#" class="hover:underline">Contact Us (Partnership)</a>
+              <a href="https://wa.me/+6285272589140" class="hover:underline">Contact Us (Partnership)</a>
             </li>
           </ul>
         </div>

@@ -43,7 +43,7 @@
               </div>
               <div class="absolute inset-0">
                 <img
-                  src="{{ asset('assets/images/auth-banner.png') }}"
+                  src="{{ asset('assets/images/banner2.jpg') }}"
                   alt=""
                   class="block h-full w-full object-cover"
                   data-carousel-item
@@ -51,7 +51,7 @@
               </div>
               <div class="absolute inset-0">
                 <img
-                  src="{{ asset('assets/images/auth-banner.png') }}"
+                  src="{{ asset('assets/images/banner3.jpg') }}"
                   alt=""
                   class="block h-full w-full object-cover"
                   data-carousel-item

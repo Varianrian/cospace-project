@@ -12,8 +12,8 @@
       <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-1">
-            <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
-              Pertanyaan 1?
+            <div class="mt-3 flex items-center justify-between p-5 text-[16px] font-bold text-[#3E4095]">
+              Bagaimana saya dapat memesan workspace di CoSpace?
               <button
                 type="button"
                 class="text-grey-500 rounded-xl font-medium rtl:text-right"
@@ -64,9 +64,13 @@
             aria-labelledby="accordion-nested-collapse-heading-1"
           >
             <div class="p-5 pt-0">
-              <p class="text-[16px] text-black">
-                Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat aute irure dolor (jawaban pertanyaan 1).
+              <p class="text-[12px] text-black text-justify">
+                Untuk memesan workspace di CoSpace, Anda perlu melakukan langkah-langkah berikut: <br>
+                1. Buat akun atau lakukan login ke CoSpace <br>
+                2. Telusuri daftar workspace yang tersedia dan pilih workspace yang sesuai dengan kebutuhan Anda <br>
+                3. Klik tombol "Pesan Sekarang" pada detail workspace yang Anda inginkan <br>
+                4.Pilih tanggal dan waktu yang diinginkan untuk reservasi<br>
+                5. Lanjutkan ke proses pembayaran dan ikuti instruksi yang diberikan
               </p>
             </div>
           </div>
@@ -75,8 +79,8 @@
       <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-2">
-            <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
-              Pertanyaan 2?
+            <div class="mt-3 flex items-center justify-between p-5 text-[16px] font-bold text-[#3E4095]">
+              Metode pembayaran apa saja yang diterima di CoSpace?
               <button
                 type="button"
                 class="text-grey-500 rounded-xl font-medium rtl:text-right"
@@ -127,9 +131,11 @@
             aria-labelledby="accordion-nested-collapse-heading-2"
           >
             <div class="p-5 pt-0">
-              <p class="text-black">
-                Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat aute irure dolor (jawaban pertanyaan 2).
+              <p class="text-[12px] text-black text-justify">
+                CoSpace menerima berbagai metode pembayaran yang aman dan nyaman, termasuk: <br>
+                1. Kartu debit/kredit (Visa, Mastercard, dll.) <br>
+                2. Dompet digital (OVO, GoPay, DANA, dll.) <br>
+                3. Transfer bank (virtual account) 
               </p>
             </div>
           </div>
@@ -138,8 +144,8 @@
       <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-3">
-            <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
-              Pertanyaan 3?
+            <div class="mt-3 flex items-center justify-between p-5 text-[16px] font-bold text-[#3E4095]">
+              Bagaimana jika saya mengalami masalah atau memiliki pertanyaan selama proses pemesanan?
               <button
                 type="button"
                 class="text-grey-500 rounded-xl font-medium rtl:text-right"
@@ -190,9 +196,10 @@
             aria-labelledby="accordion-nested-collapse-heading-3"
           >
             <div class="p-5 pt-0">
-              <p class="text-[16px] text-black">
-                Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat aute irure dolor (jawaban pertanyaan 3).
+              <p class="text-[12px] text-black text-justify">
+                Jika Anda mengalami masalah atau memiliki pertanyaan selama proses pemesanan workspace di CoSpace, Anda dapat menghubungi tim dukungan pelanggan kami melalui: <br>
+                Email: support@cospace.com <br>
+                Telepon: (022) 1234567
               </p>
             </div>
           </div>
@@ -201,8 +208,8 @@
       <div class="w-full max-w-lg rounded-lg bg-white mb-7">
         <div id="accordion-nested-collapse" data-accordion="collapse">
           <h2 id="accordion-nested-collapse-heading-4">
-            <div class="mt-3 flex items-center justify-between p-5 text-[20px] font-bold text-[#3E4095]">
-              Pertanyaan 4?
+            <div class="mt-3 flex items-center justify-between p-5 text-[16px] font-bold text-[#3E4095]">
+              Apakah saya dapat memperpanjang waktu reservasi workspace saya?
               <button
                 type="button"
                 class="text-grey-500 rounded-xl font-medium rtl:text-right"
@@ -253,9 +260,8 @@
             aria-labelledby="accordion-nested-collapse-heading-4"
           >
             <div class="p-5 pt-0">
-              <p class="text-black">
-                Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat aute irure dolor (jawaban pertanyaan 4).
+              <p class="text-black text-[12px] text-justify">
+                Ya, Anda dapat memperpanjang waktu reservasi workspace Anda di CoSpace, tergantung pada ketersediaan. Namun, Anda harus melakukan perpanjangan sebelum waktu reservasi Anda berakhir. Jika workspace masih tersedia, Anda dapat melanjutkan pemakaian dengan membayar biaya tambahan sesuai dengan lama perpanjangan yang diinginkan.
               </p>
             </div>
           </div>
