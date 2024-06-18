@@ -1,7 +1,7 @@
 <div>
   <div class="flex flex-col items-center">
-    <h1 class="mt-5 text-[24px] font-bold">John Doe</h1>
-    <p class="mb-4 text-[#112211]">john.doe@gmail.com</p>
+    <h1 class="mt-5 text-[24px] font-bold">{{ auth()->user()->name }}</h1>
+    <p class="mb-4 text-[#112211]">{{ auth()->user()->email }}</p>
     <div class="inline-flex rounded-md shadow-lg" role="group">
       <a href="{{ route('profile') }}">
         <button

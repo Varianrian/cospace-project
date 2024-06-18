@@ -1,11 +1,13 @@
 <div class="">
   <div class="bgbanner absolute z-[-1] mt-12 h-72 w-full bg-indigo-200 object-cover"></div>
-  <div class="banner z-10 xl:mx-32 lg:mx-32 mt-14 items-center rounded-lg bg-indigo-950">
+  <div class="banner z-10 mt-14 items-center rounded-lg bg-indigo-950 lg:mx-32 xl:mx-32">
     <div class="banner-body">
       <div class="container">
-        <div class="grid xl:grid-cols-5 lg:grid-cols-5">
-          <div class="col-span-2 lg:pl-12 lg:pt-10 lg:pb-28">
-            <h2 class="banner-title font-poppins lg:text-[30px] text-[20px] font-bold lg:leading-10 text-white sm:text-justify">
+        <div class="grid lg:grid-cols-5 xl:grid-cols-5">
+          <div class="col-span-2 lg:pb-28 lg:pl-12 lg:pt-10">
+            <h2
+              class="banner-title font-poppins text-[20px] font-bold text-white sm:text-justify lg:text-[30px] lg:leading-10"
+            >
               Solusi cepat untuk pesan
               <br />
               tempat, datang dan
@@ -31,7 +33,7 @@
               Baca Lebih Lengkap
             </button>
           </div>
-          <div id="default-carousel" class="col-span-3 relative lg:pl-12 h-full" data-carousel="static">
+          <div id="default-carousel" class="relative col-span-3 h-full lg:pl-12" data-carousel="static">
             <div class="relative h-full overflow-hidden rounded-lg">
               <div class="absolute inset-0">
                 <img
