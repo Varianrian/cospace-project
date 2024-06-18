@@ -12,7 +12,7 @@
             </header>
             <div class="mt-4 flex items-center gap-5 rounded-lg border border-stone-500 p-4">
               <div class="h-16 w-16 overflow-hidden rounded-lg">
-                <img alt="EduPlex Coworking Space" class="h-full w-full" src="{{ $workspace->mediaUrls[0] ? $workspace->mediaUrls[0] : 'https://via.placeholder.com/150' }}" />
+                <img alt="EduPlex Coworking Space" class="h-full w-full" src="{{ $workspace->mediaUrls ? $workspace->mediaUrls[0] : 'https://via.placeholder.com/150' }}" />
               </div>
               <div>
                 <h3 class="text-xl font-medium text-black">{{ $workspace->name }}</h3>
@@ -84,7 +84,7 @@
               <img
                 alt="EduPlex Coworking Space"
                 class="h-32 w-32 rounded-lg object-cover"
-                src="{{ $room->mediaUrls[0] ? $room->mediaUrls[0] : 'https://via.placeholder.com/150' }}"
+                src="{{ $room->mediaUrls ? $room->mediaUrls[0] : 'https://via.placeholder.com/150' }}"
               />
               <div class="ml-5 flex flex-1 flex-col justify-center">
                 <p class="font-medium text-stone-500">{{ $workspace->name }}</p>

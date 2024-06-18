@@ -4,7 +4,7 @@
       class="flex w-1/4 rounded-s-lg border border-black bg-transparent px-12 py-7 text-sm font-medium text-gray-900"
     >
       <div class="rounded-[8px] border border-[#8DD3BB]">
-        <img class="h-20 w-20 rounded-lg object-cover" src="{{ $room->mediaUrls[0] }}" alt="{{ $room->name }}" />
+        <img class="h-20 w-20 rounded-lg object-cover" src="{{ $room->mediaUrls ? $room->mediaUrls[0] : 'https://via.placeholder.com/150' }}" alt="{{ $room->name }}" />
       </div>
       <div class="ml-10 flex items-center justify-center font-bold">{{ $room->name }}</div>
     </div>

@@ -54,7 +54,7 @@
       --}}
       <x-workspace-card
         id="{{ $workspace->id }}"
-        image="{{ $workspace->mediaUrls[0] ? $workspace->mediaUrls[0] : 'https://via.placeholder.com/150' }}"
+        image="{{ $workspace->mediaUrls ? $workspace->mediaUrls[0] : 'https://via.placeholder.com/150' }}"
         name="{{ $workspace->name }}"
         address="{{ $workspace->address }}"
         cost="{{ $workspace->price }}"

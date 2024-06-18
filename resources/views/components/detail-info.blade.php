@@ -1,7 +1,7 @@
 <div>
   <div class="grid grid-cols-2 gap-2 px-32 py-7">
     <img
-      src="{{ $workspace->mediaUrls[0] }}"
+      src="{{ $workspace->mediaUrls ? $workspace->mediaUrls[0] : 'https://via.placeholder.com/150' }}"
       alt="{{ $workspace->name }}"
       class="max-h-[400px] w-full object-cover"
     />
