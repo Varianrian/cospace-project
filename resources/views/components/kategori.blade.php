@@ -27,7 +27,7 @@
   </figure>
   <figure class="image-text-container relative">
     <a href="">
-      <img class="h-[250px] w-[367px] rounded-t-lg" src="{{ asset('assets/images/kategori2.png') }}" alt="kategori2" />
+      <img class="h-[250px] w-[367px] rounded-t-lg" src="{{ asset('assets/images/kategori4.png') }}" alt="kategori2" />
     </a>
     <figcaption class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center  font-[22px] text-white">
       <p>Studio</p>
@@ -35,7 +35,7 @@
   </figure>
   <figure class="image-text-container relative">
     <a href="">
-      <img class="h-[250px] w-[367px] rounded-t-lg" src="{{ asset('assets/images/kategori2.png') }}" alt="kategori2" />
+      <img class="h-[250px] w-[367px] rounded-t-lg" src="{{ asset('assets/images/kategori5.png') }}" alt="kategori2" />
     </a>
     <figcaption class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center  font-[22px] text-white">
       <p>Private Office</p>
