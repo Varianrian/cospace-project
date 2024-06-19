@@ -102,7 +102,7 @@
         </svg>
       </div>
       @endauth
-      <div class="rounded-[4px] border border-[#666666] p-4">
+      <div class="rounded-[4px] border border-[#666666] p-4 hover:cursor-pointer hover:bg-sky-100" id="share">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -201,6 +201,12 @@
           showToast('Bookmark berhasil dihapus', 'success');
         });
     }
+  });
+
+  const share = document.getElementById('share');
+  share.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href);
+    showToast('Link berhasil disalin', 'success');
   });
 </script>
 @endauth
