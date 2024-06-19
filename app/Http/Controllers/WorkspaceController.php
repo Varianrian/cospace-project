@@ -16,7 +16,7 @@ class WorkspaceController extends Controller
     public function workspaceDetail(Workspace $workspace)
     {
         $bookmark = auth()->user()?->bookmarks->contains('workspace_id', $workspace->id);
-        $reviews = $workspace->reviews()->limit(4)->get();
+        $reviews = $workspace->reviews()->limit(4)->latest()->get();
 
         return view('pages.workspaceDetail', [
             'workspace' => $workspace,
