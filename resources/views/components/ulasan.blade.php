@@ -106,15 +106,13 @@
                                                     </svg>
                                                 @endfor
                                             </div>
-                                            <span class="ml-2 text-[14px]">{{ $review->created_at->diffForHumans() }} ago</span>
+                                            <span class="ml-2 text-[14px]">{{ $review->created_at->diffForHumans() }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-2.5 text-[13px] leading-5 max-md:max-w-full">
-                                Consequat velit qui adipisicing sunt do rependerit ad laborum tempor ullamco
-                                exercitation. Ullamco tempor
-                                adipisicing et voluptate duis sit esse aliqua
+                                {{ $review->comment }}
                             </p>
                         </article>
                         <div class="mt-5 h-px shrink-0 border border-solid border-zinc-500 max-md:max-w-full"></div>
